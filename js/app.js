@@ -2,7 +2,6 @@ module.exports = function(app) {
     var mongoose = require('mongoose');
     mongoose.Promise = require('q').Promise;
 
-    // Used temporarily for accessing MLab MongoDB.
     var username = "admin";
     var password = "admin";
     var connectionString = 'mongodb://'+ username + ':' + password + '@ds019756.mlab.com:19756/heroku_flv5vpkg';
