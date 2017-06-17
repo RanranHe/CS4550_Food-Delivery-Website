@@ -8,7 +8,14 @@ var userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     dateCreated: {type: Date, default: Date.now()},
-    income: Number
+    // For users
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'orderModel'}],
+    // For managers
+    income: Number,
+    restaurants: [String],
+    // For DeliveryMan
+    status: {type: String, enum:['FREE', 'BUSY']},
+    reviews: [String]
 }, {collection: "RollingFoodDelivery.users"});
 
 module.exports = userSchema;

@@ -13,6 +13,8 @@ module.exports = function () {
     userModel.deleteUser = deleteUser;
     userModel.updateUser = updateUser;
     userModel.findUserByFacebookId = findUserByFacebookId;
+    //////////Helper Function ////////////////
+    userModel.addOrderToArray = addOrderToArray;
 
     module.exports = userModel;
 
@@ -23,7 +25,9 @@ module.exports = function () {
         findUserById: findUserById,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        findUserByFacebookId: findUserByFacebookId
+        findUserByFacebookId: findUserByFacebookId,
+        /////////Helper///////////////
+        addOrderToArray: addOrderToArray
     };
 
 
@@ -64,4 +68,13 @@ module.exports = function () {
         return userModel.findOne({'facebook.id': facebookId});
     }
 
+    //////////////////Helper Functions////////////////////
+    function addOrderToArray(userId, orderId) {
+        return userModel
+            .findUserById(userId)
+            .then(function (user) {
+                user.orders.push(orderId);
+                return user.save();
+            })
+    }
 };

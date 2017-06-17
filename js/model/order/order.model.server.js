@@ -1,21 +1,46 @@
-var mongoose = require('mongoose');
-var userSchema = require('./order.model.server');
+module.exports = function () {
+    var mongoose = require('mongoose');
+    var orderSchema = require('./order.schema.server');
 
-var userModel = mongoose.model('Model', userSchema);
+    var orderModel = mongoose.model('orderModel', orderSchema);
+    var userModel = require('../order/order.model.server');
 
-userModel.createUser = createUser;
-userModel.findUserByCredential = findUserByCredential;
+    orderModel.createOrder = createOrder;
+    orderModel.updateOrder = updateOrder;
+    orderModel.findOrdersByUserId = findOrdersByUserId;
+    orderModel.findOrderById = findOrderById;
 
-module.exports = userModel;
+    module.exports = orderModel;
 
-function createUser(user) {
-    var userResult = userModel.collection.insert(user);
-    return userResult;
-}
+    return {
+        createOrder: createOrder,
+        updateOrder: updateOrder,
+        findOrdersByUserId: findOrdersByUserId,
+        findOrderById: findOrderById
+    };
 
-function findUserByCredential(username, password) {
-    return userModel.findOne({
-        username: username,
-        password: password
-    });
-}
+    function createOrder(userId, order) {
+        order._user = userId;
+        return orderModel
+            .collection.insert(order)
+            .then(function (order) {
+                var userId = order._user;
+                var orderId = order._id;
+                userModel.addOrderToArray(userId, orderId);
+            })
+    }
+
+    function updateOrder(orderId, order) {
+        return orderModel.update(
+            {_id: orderId},
+            {$set: order});
+    }
+
+    function findOrdersByUserId(userId) {
+        return orderModel.find({_user: userId});
+    }
+
+    function findOrderById(orderId) {
+        return orderModel.findOne({_id: orderId});
+    }
+};

@@ -20,4 +20,5 @@ module.exports = function(app) {
 
     var models = require("./model/models.server")();
     require("./service.server/user.service.server")(app, models);
+    require("./service.server/order.service.server")(app, models);
 };

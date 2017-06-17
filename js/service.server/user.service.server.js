@@ -11,13 +11,13 @@ module.exports = function (app, models) {
     passport.deserializeUser(deserializeUser);
 
     ///////////////////// For Facebook Login ///////////////////////////
-    var FacebookStrategy = require('passport-facebook').Strategy;
-    var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL
-    };
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    // var FacebookStrategy = require('passport-facebook').Strategy;
+    // var facebookConfig = {
+    //     clientID: process.env.FACEBOOK_CLIENT_ID,
+    //     clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    //     callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    // };
+    // passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
     ///////////////////// For security of User part //////////////////////
     app.post("/api/login", passport.authenticate('local'), login);
@@ -27,19 +27,19 @@ module.exports = function (app, models) {
     app.post('/api/assignment/register', register);
 
     ///////////////////// For Facebook Login ///////////////////////////
-    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            successRedirect: '/project/index.html#!/profile',
-            failureRedirect: '/project/index.html#!/login'
-        }));
+    // app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    // app.get('/auth/facebook/callback',
+    //     passport.authenticate('facebook', {
+    //         successRedirect: '/project/index.html#!/profile',
+    //         failureRedirect: '/project/index.html#!/login'
+    //     }));
 
-    app.get("/api/user/:userId", findUserById);
-    app.get('/api/user/', findUserByUsername);
-    app.get("/api/assignment/user/", findUserByCredentials);
-    app.post('/api/user', createUser);
-    app.put('/api/user/:userId', updateUser);
-    app.delete('/api/user/:userId', deleteUser);
+    app.get("/api/project/user/:userId", findUserById);
+    app.get('/api/project/user/', findUserByUsername);
+    app.get("/api/project/assignment/user/", findUserByCredentials);
+    app.post('/api/project/user', createUser);
+    app.put('/api/project/user/:userId', updateUser);
+    app.delete('/api/project/user/:userId', deleteUser);
 
     ////////////////////// Login /////////////////////////
     function localStrategy(username, password, done) {
