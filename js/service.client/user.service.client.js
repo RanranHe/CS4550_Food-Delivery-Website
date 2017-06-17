@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("RushDelivery")
+        .module("RollingFood")
         .factory("UserService", UserService);
 
     function UserService($http) {
