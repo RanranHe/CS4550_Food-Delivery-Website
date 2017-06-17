@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("RushDelivery")
+        .module("RollingFood")
         .controller("LoginController", LoginController);
 
     function LoginController($location, UserService) {

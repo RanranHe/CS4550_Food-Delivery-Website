@@ -1,3 +1,8 @@
-/**
- * Created by j on 6/17/17.
- */
+(function () {
+   angular.module("RollingFood")
+       .controller("MainController", MainController);
+
+   function MainController() {
+
+   }
+});
