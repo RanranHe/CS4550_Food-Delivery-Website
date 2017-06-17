@@ -1,5 +1,5 @@
 module.exports = function (app) {
-    var userModel = require('../model/UserModel.server');
+    var userModel = require('../model/user/user.model.server');
 
     app.post('/api/project/user', createUser);
     app.get('/api/project/user', findUserByCredential);

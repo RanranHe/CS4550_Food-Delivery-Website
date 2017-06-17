@@ -16,5 +16,5 @@ module.exports = function(app) {
     mongoose.connect(connectionString);
 
 
-    require('./services/UserService.service.server.js')(app);
+    require('./service.server/user.service.server.js')(app);
 };
