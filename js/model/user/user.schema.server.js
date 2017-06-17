@@ -9,6 +9,6 @@ var userSchema = mongoose.Schema({
     lastName: String,
     dateCreated: {type: Date, default: Date.now()},
     income: Number
-});
+}, {collection: "RollingFoodDelivery.users"});
 
 module.exports = userSchema;
