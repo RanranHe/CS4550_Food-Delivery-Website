@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module("RushDelivery", ["ngRoute"])
+        .module("RollingFood", ["ngRoute"])
         .config(Config);
 
     function Config($routeProvider) {
@@ -13,7 +13,17 @@
             .when("/", {
                 templateUrl: "../views/main/template/mainpage.view.client.html",
                 controller: "MainController",
-                controllerAs: "Model"
+                controllerAs: "model"
+            })
+            .when("/register",{
+                templateUrl: "../views/user/template/user.register.client.view.html",
+                controller: "RegisterController",
+                controllerAs: "model"
+            })
+            .when("/profile",{
+                templateUrl: "../views/user/template/user.profile.client.view.html",
+                controller: "ProfileController",
+                controllerAs: "model"
             })
     }
 
