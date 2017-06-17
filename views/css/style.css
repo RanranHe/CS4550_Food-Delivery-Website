@@ -11,6 +11,10 @@
 }
 
 body {
-    background: url("../../resources/4115481-white-background-image.jpg") no-repeat;
+    background: #FCFCFB;
     background-size: 100% 100vh;
+}
+
+.cornsilk{
+    background: #FCFCFB;
 }
