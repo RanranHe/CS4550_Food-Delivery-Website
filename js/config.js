@@ -15,31 +15,50 @@
                 controller: "MainController",
                 controllerAs: "model"
             })
-            .when("/register",{
+            .when("/register", {
                 templateUrl: "../views/user/template/user.register.client.view.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/profile",{
+            .when("/profile", {
                 templateUrl: "../views/user/template/user.profile.client.view.html",
                 controller: "ProfileController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
-            .when("/orderList",{
+            .when("/orderList", {
                 templateUrl: "../views/order/template/order-list.view.client.html",
                 controller: "OrderController",
                 controllerAs: "model"
             })
-            .when("/orderNew",{
+            .when("/orderNew", {
                 templateUrl: "../views/order/template/order-new.view.client.html",
                 controller: "OrderController",
                 controllerAs: "model"
             })
-            .when("/orderEdit",{
+            .when("/orderEdit", {
                 templateUrl: "../views/order/template/order-edit.view.client.html",
                 controller: "OrderController",
                 controllerAs: "model"
             })
     }
 
+    function checkLoggedIn($q, $location, UserService) {
+        var deferred = $q.defer();
+        UserService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                console.log("currentUser config: " + currentUser);
+                if (currentUser === '0') {
+                    // deferred.resolve(currentUser);
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
 })();
