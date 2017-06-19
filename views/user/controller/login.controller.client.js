@@ -6,7 +6,9 @@
     function LoginController($location, UserService) {
         var model = this;
         model.login = function (username, password) {
-            UserService.findUserByCredentials(username, password).then(login)
+            UserService
+                .findUserByCredentials(username, password)
+                .then(login)
 
             function login(found) {
                 if (found !== null) {

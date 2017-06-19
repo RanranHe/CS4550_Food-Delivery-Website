@@ -9,6 +9,7 @@ module.exports = function () {
 
     userModel.createUser = createUser;
     userModel.findUserById = findUserById;
+    userModel.findUserByUsername = findUserByUsername;
     userModel.findUserByCredentials = findUserByCredentials;
     userModel.deleteUser = deleteUser;
     userModel.updateUser = updateUser;
@@ -32,7 +33,8 @@ module.exports = function () {
 
 
     function createUser(user) {
-        return userModel.create(user);
+        console.log("model creare");
+        return userModel.collection.insert(user);
     }
 
     function findUserByCredentials(username, password) {
@@ -40,6 +42,7 @@ module.exports = function () {
     }
 
     function findUserByUsername(username) {
+        console.log("findUserByUsername model: " + userModel.findOne({username: username}).username);
         return userModel.findOne({username: username});
     }
 
