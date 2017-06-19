@@ -1,10 +1,63 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
-</body>
-</html>
+
+<section class="row profileinmiddle">
+    <div class="list-group-item">
+        <h5 class="header" style="color: #1b6d85; text-align: center">My Order</h5>
+    </div>
+    <div class="list-group-item">First item
+        <span class="glyphicon glyphicon-minus pull-right"></span>
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+    </div>
+    <div class="list-group-item">Second item
+        <span class="glyphicon glyphicon-minus pull-right"></span>
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+    </div>
+    <div class="list-group-item">Third item
+        <span class="glyphicon glyphicon-minus pull-right"></span>
+        <span class="glyphicon glyphicon-plus pull-right"></span>
+    </div>
+</section>
+<br>
+<br>
+<section class="row profileinmiddle">
+    <div class="list-group-item">
+        <h5 class="header" style="color: #1b6d85; text-align: center">Contact Information</h5>
+    </div>
+    <div class="list-group-item">Name:
+    </div>
+    <div class="list-group-item">Phone Number:
+    </div>
+    <div class="list-group-item">Email:
+    </div>
+    <div class="list-group-item">Address:
+    </div>
+</section>
+<br>
+<br>
+<section class="row profileinmiddle">
+    <div class="list-group-item">
+        <h5 class="header" style="color: #1b6d85; text-align: center">Payment Method</h5>
+    </div>
+    <div class="list-group-item">
+        <label for="cardNumber">CardNumber</label>
+        <input type="number" class="form-control" id="cardNumber" placeholder="lalalala">
+    </div>
+    <div class="list-group-item">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="lalalala">
+    </div>
+    <div class="list-group-item">
+        <label for="date">Expirtation Date</label>
+        <input type="date" class="form-control" id="date" placeholder="01/2011">
+    </div>
+    <div class="list-group-item">
+        <label for="address">Billing Address</label>
+        <input type="text" class="form-control" id="address" placeholder="1155 Tremonet St,Boston,MA 02115">
+    </div>
+    <br>
+    <a ng-click="model.checkOut()"
+       class="btn btn-primary  btn-block">Check Out</a>
+</section>
+<br>
+<br>
+<br>

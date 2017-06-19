@@ -1,3 +1,9 @@
-/**
- * Created by j on 6/17/17.
- */
+(function () {
+    angular
+        .module("RollingFood")
+        .controller("OrderController", OrderController);
+
+    function OrderController() {
+        var model = this;
+    }
+})();

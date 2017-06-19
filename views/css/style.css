@@ -35,7 +35,7 @@ a:hover{
 }
 
 .header-big {
-    font-size: 80px;
+    font-size: 600%;
     font-family: "Comic Sans MS";
     text-align: center;
 }
@@ -47,12 +47,17 @@ a:hover{
 }
 
 .decro img{
-    width:110px;
-    height:110px;
+    width:19%;
+    height:19%;
 }
 
 .navbar-toolbar img{
     width:50px;
     height:50px;
     margin-left: 10px;
+}
+
+.profileinmiddle{
+    padding-left: 50px;
+    padding-right: 50px;
 }

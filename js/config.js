@@ -25,6 +25,21 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
+            .when("/orderList",{
+                templateUrl: "../views/order/template/order-list.view.client.html",
+                controller: "OrderController",
+                controllerAs: "model"
+            })
+            .when("/orderNew",{
+                templateUrl: "../views/order/template/order-new.view.client.html",
+                controller: "OrderController",
+                controllerAs: "model"
+            })
+            .when("/orderEdit",{
+                templateUrl: "../views/order/template/order-edit.view.client.html",
+                controller: "OrderController",
+                controllerAs: "model"
+            })
     }
 
 })();
