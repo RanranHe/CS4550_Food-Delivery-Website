@@ -25,25 +25,24 @@
             }
 
             UserService
-                .findUserByUsername(username)
-                // .then(console.log("found:"));
-                .then(function checkUser(found) {
-                console.log("found: " + found);
-                if (found) {
-                    model.error = "Username not available."
-                } else {
-                    var newUser = {
-                        username: username,
-                        password: password
-                    };
+                .findUserByUsername(username).then(
+                function (found) {
+                    if (found) {
+                        model.error = "Username not available."
+                    } else {
+                        var newUser = {
+                            username: username,
+                            password: password
+                        };
 
-                    UserService
-                        .createUser(newUser)
-                        .then(function (res) {
-                            $location.url("/user/" + res.data._id);
-                        });
-                }
-            })
+                        UserService
+                            .createUser(newUser)
+                            .then(function (res) {
+                                console.log(res);
+                                $location.url("/user/" + res.data.ops[0]._id);
+                            });
+                    }
+                });
         }
     }
 })();

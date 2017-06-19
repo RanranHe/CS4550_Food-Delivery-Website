@@ -32,7 +32,6 @@
         }
 
         function findUserByUsername(username) {
-            console.log("client");
             var url = "/api/project/user?username=" + username;
             return $http
                 .get(url)

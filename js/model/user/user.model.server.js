@@ -33,7 +33,6 @@ module.exports = function () {
 
 
     function createUser(user) {
-        console.log("model creare");
         return userModel.collection.insert(user);
     }
 
@@ -42,7 +41,6 @@ module.exports = function () {
     }
 
     function findUserByUsername(username) {
-        console.log("findUserByUsername model: " + userModel.findOne({username: username}).username);
         return userModel.findOne({username: username});
     }
 

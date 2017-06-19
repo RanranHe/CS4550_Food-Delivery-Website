@@ -5,10 +5,7 @@ module.exports = function (app, models) {
     app.get('/api/project/user/', findUserByUsername);
 
     function findUserByUsername(req, res) {
-        console.log("findUserByUsername server");
-
         var username = req.query['username'];
-
         userModel
             .findUserByUsername(username)
             .then(function (user) {
