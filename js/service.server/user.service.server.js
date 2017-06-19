@@ -11,6 +11,16 @@ module.exports = function (app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
+    // Facebook Login
+    var FacebookStrategy = require('passport-facebook').Strategy;
+    var facebookConfig = {
+        clientID: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    };
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    //=====================================================================
 
     app.post('/api/project/register', register);
     app.post('/api/project/user', createUser);
@@ -19,10 +29,21 @@ module.exports = function (app, models) {
     app.post("/api/project/login", passport.authenticate('local'), login);
     app.get('/api/project/checkLoggedIn', checkLoggedIn);
 
+    app.put('/api/project/user/:userId', updateUser);
+    app.delete('/api/project/user/:userId', deleteUser);
+    app.post("/api/project/logout", logout);
+
+    // Facebook Login
+    app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/#!/profile',
+            failureRedirect: '/#!/login'
+        }));
+
     //////////////// Register ////////////////
     function register(req, res) {
         var user = req.body;
-        console.log("register: " + user.username + "  " + user.password)
         user.password = bcrypt.hashSync(user.password);
         userModel
             .createUser(user)
@@ -75,12 +96,9 @@ module.exports = function (app, models) {
     }
 
     function checkLoggedIn(req, res) {
-        console.log(req.user);
         if (req.isAuthenticated()) {
-            console.log("if")
             res.json(req.user);
         } else {
-            console.log("else")
             res.send('0');
         }
     }
@@ -100,5 +118,68 @@ module.exports = function (app, models) {
                     done(err, null);
                 }
             );
+    }
+    ////////////////////////////////////////
+    function updateUser(req, res) {
+        var id = req.body.id;
+        var newUser = req.body.newUser;
+        userModel
+            .updateUser(id, newUser)
+            .then(function (user) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.status(404).send("Unable to update User")
+                });
+    }
+
+    function deleteUser(req, res) {
+        var id = req.params.userId;
+        userModel
+            .deleteUser(id)
+            .then(function (status) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.status(404).send("Unable to remove user");
+                });
+    }
+
+    function logout(req, res) {
+        req.logout();
+        res.sendStatus(200);
+    }
+
+    /////////////////// Facebook Login ///////////////////
+    function facebookStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByFacebookId(profile.id)
+            .then(function (user) {
+                    if (user) {
+                        return done(null, user);
+                    } else {
+                        var newFacebookUser = {
+                            username: profile.displayName,
+                            facebook: {
+                                id: profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newFacebookUser);
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                })
+            .then(function (user) {
+                    return done(null, user);
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                });
     }
 };
