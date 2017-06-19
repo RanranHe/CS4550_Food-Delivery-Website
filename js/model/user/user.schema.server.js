@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
     lastName: String,
     dateCreated: {type: Date, default: Date.now()},
     // For users
+    phone: Number,
     orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'orderModel'}],
     // For managers
     income: Number,
