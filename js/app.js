@@ -5,7 +5,7 @@ module.exports = function(app) {
     var username = "admin";
     var password = "admin";
 
-    mongoose.connect('mongodb://127.0.0.1/webdev_assignment');
+    mongoose.connect('mongodb://127.0.0.1/RollingFood');
 
     // var connectionString = 'mongodb://'+ username + ':' + password + '@ds019756.mlab.com:19756/heroku_flv5vpkg';
     //

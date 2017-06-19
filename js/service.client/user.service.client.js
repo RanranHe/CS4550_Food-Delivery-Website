@@ -5,30 +5,21 @@
 
     function UserService($http) {
         return {
-            "findUserByCredentials":  findUserByCredentials,
-            "findUserByUsername": findUserByUsername,
             "register": register,
-            "createUser": createUser
+            "findUserByUsername": findUserByUsername,
+            "login": login,
+            "checkLoggedIn": checkLoggedIn,
+            "updateUser": updateUser
         };
 
         //////////////// Register ///////////////
         function register(user) {
-            console.log("here");
-            var url = "/api/project/security/register";
-            return $http.post(url, user)
+            var url = "/api/project/register";
+            return $http
+                .post(url, user)
                 .then(function (response) {
                     return response.data;
                 });
-        }
-
-        /////////////////////////////////////////
-        function findUserByCredentials(username, password) {
-            var url = "/api/project/user?username=" + username + "&password=" + password;
-            return $http.get(url).then(
-                function(response) {
-                    return response.data;
-                }
-            );
         }
 
         function findUserByUsername(username) {
@@ -39,16 +30,37 @@
                     return response.data;
                 });
         }
-
-        function createUser(user) {
-            var url = "/api/user";
+        /////////////// Login ///////////////////
+        function login(username, password) {
+            var url = "/api/project/login";
+            var credentials = {
+                username: username,
+                password: password
+            };
             return $http
-                .post(url, user);
-            // .then(function (response) {
-            //     return response.data;
-            // });
+                .post(url, credentials)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
+        function checkLoggedIn() {
+            var url = "/api/project/checkLoggedIn";
+            return $http
+                .get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
+        //////////////////////////////////////
+        function updateUser(userId, newUser) {
+            var url = "/api/project/user/" + userId;
+            var data = {
+                id: userId,
+                newUser: newUser
+            };
+            return $http.put(url, data);
+        }
     }
 })();
