@@ -11,16 +11,6 @@ module.exports = function (app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-
-    // Google Login
-    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-    var googleConfig = {
-        clientID: process.env.GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: process.env.GOOGLE_CALLBACK_URL
-    };
-    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
-
     //=====================================================================
 
     app.post('/api/project/register', register);
@@ -164,8 +154,8 @@ module.exports = function (app, models) {
     var facebookConfig = {
         clientID: process.env.FACEBOOK_CLIENT_ID,
         clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL
-        // profileFields: ['displayName', 'emails', 'name']
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL,
+        profileFields: ['displayName', 'emails', 'name']
     };
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
@@ -176,12 +166,13 @@ module.exports = function (app, models) {
                     if (user) {
                         return done(null, user);
                     } else {
-                        // var email = profile.emails[0].value;
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split('@');
                         var newFacebookUser = {
-                            username: profile.displayName,
-                            // firstName: profile.name.givenName,
-                            // lastName: profile.name.familyName,
-                            // email: email,
+                            username: emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName: profile.name.familyName,
+                            email: email,
                             facebook: {
                                 id: profile.id,
                                 token: token
@@ -210,6 +201,14 @@ module.exports = function (app, models) {
     }
 
     /////////////////// Google Login ///////////////////
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var googleConfig = {
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL,
+        profileFields: ['name', 'emails']
+    };
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
     function googleStrategy(token, refreshToken, profile, done) {
         userModel
             .findUserByGoogleId(profile.id)
