@@ -14,6 +14,7 @@ module.exports = function () {
     userModel.deleteUser = deleteUser;
     userModel.updateUser = updateUser;
     userModel.findUserByFacebookId = findUserByFacebookId;
+    userModel.findUserByGoogleId = findUserByGoogleId;
     //////////Helper Function ////////////////
     userModel.addOrderToArray = addOrderToArray;
 
@@ -27,6 +28,7 @@ module.exports = function () {
         updateUser: updateUser,
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId,
+        findUserByGoogleId: findUserByGoogleId,
         /////////Helper///////////////
         addOrderToArray: addOrderToArray
     };
@@ -51,14 +53,8 @@ module.exports = function () {
     function updateUser(id, newUser) {
         return userModel.update(
             {_id: id},
-            {
-                $set: {
-                    firstName: newUser.firstName,
-                    lastName: newUser.lastName,
-                    email: newUser.email
-                }
-
-            });
+            {$set: newUser}
+        );
     }
 
     function deleteUser(userId) {
@@ -67,6 +63,10 @@ module.exports = function () {
 
     function findUserByFacebookId(facebookId) {
         return userModel.findOne({'facebook.id': facebookId});
+    }
+
+    function findUserByGoogleId(googleId) {
+        return userModel.findOne({'google.id': googleId});
     }
 
     //////////////////Helper Functions////////////////////

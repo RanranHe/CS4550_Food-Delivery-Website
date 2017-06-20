@@ -7,9 +7,17 @@ var userSchema = mongoose.Schema({
     email: String,
     firstName: String,
     lastName: String,
+    facebook: {
+        id:    String,
+        token: String
+    },
+    google: {
+        id:    String,
+        token: String
+    },
     dateCreated: {type: Date, default: Date.now()},
     // For users
-    phone: Number,
+    phone: String,
     orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'orderModel'}],
     // For managers
     income: Number,

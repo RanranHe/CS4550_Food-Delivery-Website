@@ -70,3 +70,14 @@ a:hover{
     margin-left: 20px;
     margin-right: 20px;
 }
+
+/*For required fields in login and register (use in login and register)*/
+.require {
+    color: red;
+    float: right;
+}
+
+/*Make boday above the bottom bar(Add it in index body)*/
+.bottomBar {
+    margin-bottom: 5%;
+}

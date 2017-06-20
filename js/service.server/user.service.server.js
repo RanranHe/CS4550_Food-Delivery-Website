@@ -11,14 +11,15 @@ module.exports = function (app, models) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    // Facebook Login
-    var FacebookStrategy = require('passport-facebook').Strategy;
-    var facebookConfig = {
-        clientID: process.env.FACEBOOK_CLIENT_ID,
-        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-        callbackURL: process.env.FACEBOOK_CALLBACK_URL
+
+    // Google Login
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+    var googleConfig = {
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: process.env.GOOGLE_CALLBACK_URL
     };
-    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 
     //=====================================================================
 
@@ -41,6 +42,13 @@ module.exports = function (app, models) {
             failureRedirect: '/#!/login'
         }));
 
+    // Google Login
+    app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/#!/profile',
+            failureRedirect: '/#!/'
+        }));
     //////////////// Register ////////////////
     function register(req, res) {
         var user = req.body;
@@ -96,6 +104,7 @@ module.exports = function (app, models) {
     }
 
     function checkLoggedIn(req, res) {
+        console.log("req.user: " + req.user);
         if (req.isAuthenticated()) {
             res.json(req.user);
         } else {
@@ -151,6 +160,15 @@ module.exports = function (app, models) {
     }
 
     /////////////////// Facebook Login ///////////////////
+    var FacebookStrategy = require('passport-facebook').Strategy;
+    var facebookConfig = {
+        clientID: process.env.FACEBOOK_CLIENT_ID,
+        clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+        callbackURL: process.env.FACEBOOK_CALLBACK_URL
+        // profileFields: ['displayName', 'emails', 'name']
+    };
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
     function facebookStrategy(token, refreshToken, profile, done) {
         userModel
             .findUserByFacebookId(profile.id)
@@ -158,8 +176,12 @@ module.exports = function (app, models) {
                     if (user) {
                         return done(null, user);
                     } else {
+                        // var email = profile.emails[0].value;
                         var newFacebookUser = {
                             username: profile.displayName,
+                            // firstName: profile.name.givenName,
+                            // lastName: profile.name.familyName,
+                            // email: email,
                             facebook: {
                                 id: profile.id,
                                 token: token
@@ -181,5 +203,43 @@ module.exports = function (app, models) {
                         return done(err);
                     }
                 });
+    }
+
+    /////////////////// Google Login ///////////////////
+    function googleStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split('@');
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
     }
 };

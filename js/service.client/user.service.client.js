@@ -9,7 +9,8 @@
             "findUserByUsername": findUserByUsername,
             "login": login,
             "checkLoggedIn": checkLoggedIn,
-            "updateUser": updateUser
+            "updateUser": updateUser,
+            "deleteUser": deleteUser
         };
 
         //////////////// Register ///////////////
@@ -61,6 +62,15 @@
                 newUser: newUser
             };
             return $http.put(url, data);
+        }
+
+        function deleteUser(userId) {
+            var url = "/api/project/user/" + userId;
+            return $http.delete(url);
+        }
+
+        function logout() {
+            return $http.post("/api/project/logout");
         }
     }
 })();

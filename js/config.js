@@ -60,9 +60,7 @@
         UserService
             .checkLoggedIn()
             .then(function (currentUser) {
-                console.log("currentUser config: " + currentUser);
                 if (currentUser === '0') {
-                    // deferred.resolve(currentUser);
                     deferred.reject();
                     $location.url('/login');
                 } else {

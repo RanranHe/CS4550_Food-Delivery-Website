@@ -1,8 +1,11 @@
 
+<div class="alert-info" ng-show="model.message">
+    {{model.message}}
+</div>
 
 <div class="profileinmiddle">
-    <div ng-show="model.message" class="alert alert-danger">
-        {{model.message}}
+    <div ng-show="model.error" class="alert alert-success">
+        {{model.error}}
     </div>
     <div class="form-group">
         <label for="username">Username</label>
@@ -22,17 +25,9 @@
     </div>
     <div class="form-group">
         <label for="phone-number">Phone Number</label>
-        <input type="tel" class="form-control" id="phone-number" placeholder="617-(667)3372" ng-model = "model.user.phoneNumber">
+        <input type="tel" class="form-control" id="phone-number" placeholder="(617)-667-3372" ng-model = "model.user.phone">
     </div>
 
-    <div class="form-group">
-        <label>Identity</label>
-        <select name="role" class="form-control" ng-model="model.user.role">
-            <option value="USER">Customer</option>
-            <option value="DELIVERYMAN">Delivery Man</option>
-            <option value="MANAGER">Manager</option>
-        </select>
-    </div>
     <a ng-click="model.updateUser()"
        class="btn btn-primary  btn-block">Update</a>
     <a ng-click="model.deleteUser()"
