@@ -1,0 +1,42 @@
+<section class="row profileinmiddle">
+    <div class="list-group-item">
+        <h5 class="header">My Delivery</h5>
+    </div>
+
+    <div class="list-group-item">
+        <div class="row">
+            <div class="col-xs-4">
+                <div data-toggle="collapse" data-target="#collapse3">Delivery1</div>
+            </div>
+            <div class="col-xs-3 hidden-xs">status</div>
+            <div class="col-xs-3 pull-right">
+                <button onclick="model.popUp()" class="pull-right">Cancel</button>
+            </div>
+        </div>
+        <div id="collapse3" class="panel-collapse collapse">
+            <br>
+            <div class="row">
+                <div class="col-xs-10">Address:</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-10">Phone Number:</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-4">Status:</div>
+                <div class="col-xs-3">
+                    <select name="status" class="form-control" ng-model="model.order.status">
+                        <option value="Processing">Processing</option>
+                        <option value="OnTheWay">OnTheWay</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 pull-right">
+                    <button ngclick="model.editOrder()" class="pull-right">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

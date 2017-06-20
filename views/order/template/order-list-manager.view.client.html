@@ -1,0 +1,107 @@
+<section class="row profileinmiddle">
+    <div class="list-group-item">
+        <h5 class="header">My Restaurants</h5>
+    </div>
+
+    <div class="list-group-item">
+        <!--restaurant header-->
+        <div class="row">
+            <div class="col-xs-4">
+                <div data-toggle="collapse" data-target="#collapse3">Restaurant1</div>
+            </div>
+            <div class="col-xs-3 hidden-xs">status</div>
+            <div class="col-xs-3 pull-right">
+                <button onclick="model.popUp()" class="pull-right">Delete</button>
+            </div>
+        </div>
+        <!-- retaurant body-->
+        <div id="collapse3" class="collapse">
+            <br>
+            <!--First order-->
+            <div class="order">
+                <div class="row">
+                    <div class="col-xs-4" data-toggle="collapse" data-target="#detail">Order1</div>
+                    <div class="col-xs-3 hidden-xs">status</div>
+                    <div class="col-xs-3 pull-right">
+                        <button ngclick="model.editOrder()" class="pull-right">Edit</button>
+                    </div>
+                </div>
+                <ul id="detail" class="collapse">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4">First item</div>
+                            <div class="col-xs-3 hidden-xs">3</div>
+                            <div class="col-xs-3 pull-right">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4">Second item</div>
+                            <div class="col-xs-3 hidden-xs">3</div>
+                            <div class="col-xs-3 pull-right">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4">Third item</div>
+                            <div class="col-xs-3 hidden-xs">3</div>
+                            <div class="col-xs-3 pull-right">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <br>
+            <!--Second order-->
+            <div class="order">
+                <div class="row">
+                    <div class="col-xs-4" data-toggle="collapse" data-target="#detail2">Order2</div>
+                    <div class="col-xs-3 hidden-xs">status</div>
+                    <div class="col-xs-3 pull-right">
+                        <button ngclick="model.editOrder()" class="pull-right">Edit</button>
+                    </div>
+                </div>
+                <ul id="detail2" class="collapse">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4">First item</div>
+                            <div class="col-xs-3 hidden-xs">3</div>
+                            <div class="col-xs-3 pull-right">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4">Second item</div>
+                            <div class="col-xs-3 hidden-xs">3</div>
+                            <div class="col-xs-3 pull-right">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-xs-4">Third item</div>
+                            <div class="col-xs-3 hidden-xs">3</div>
+                            <div class="col-xs-3 pull-right">
+                                <span class="glyphicon glyphicon-plus"></span>
+                                <span class="glyphicon glyphicon-minus"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
