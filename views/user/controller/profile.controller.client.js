@@ -8,7 +8,15 @@
 
         model.user = currentUser;
         var userId = currentUser._id;
-        console.log("currentUser: " + userId);
+
+        model.hasRole = true;
+        if (currentUser.role === null || currentUser.role === undefined) {
+            model.hasRole = false;
+        } else {
+            model.hasRole = true;
+        }
+        console.log(model.hasRole);
+
 
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
@@ -28,7 +36,19 @@
             UserService
                 .updateUser(model.user._id, model.user)
                 .then(function () {
-                    model.error = "Update Successfully."
+                    if (model.user.role !== null && model.user.role !== undefined) {
+                        model.hasRole = true;
+                    }
+                    model.error = "Update Successfully.";
+                    if (model.user.role === 'USER') {
+                        model.message = "Welcome, Customer " + model.user.username + "!";
+                    }
+                    if (model.user.role === 'DELIVERYMAN') {
+                        model.message = "Welcome, Delivery Man " + model.user.username + "!"
+                    }
+                    if (model.user.role === "MANAGER") {
+                        model.message = "Welcome, Manager " + model.user.username + "!";
+                    }
                 });
         }
 
