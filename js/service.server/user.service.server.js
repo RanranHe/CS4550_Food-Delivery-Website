@@ -187,7 +187,11 @@ module.exports = function (app, models) {
                                 token: token
                             }
                         };
-                        return userModel.createUser(newFacebookUser);
+                        return userModel
+                            .createUser(newFacebookUser)
+                            .then(function (response) {
+                                return done(null, newFacebookUser);
+                            });
                     }
                 },
                 function (err) {
@@ -226,7 +230,11 @@ module.exports = function (app, models) {
                                 token: token
                             }
                         };
-                        return userModel.createUser(newGoogleUser);
+                        return userModel
+                            .createUser(newGoogleUser)
+                            .then(function (response) {
+                                return done(null, newGoogleUser);
+                            });
                     }
                 },
                 function(err) {
