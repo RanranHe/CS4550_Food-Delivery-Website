@@ -27,7 +27,7 @@ module.exports = function (app, models) {
         userModel
             .createUser(user)
             .then(function (user) {
-                req.login(user, function (status) {
+                req.login(user.ops[0], function (status) {
                     res.json(user);
                 });
             });
