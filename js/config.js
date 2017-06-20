@@ -6,7 +6,7 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/login", {
-                templateUrl: "../views/user/template/user.login.client.view.html",
+                templateUrl: "../views/user/template/user.login.view.client.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
@@ -16,12 +16,12 @@
                 controllerAs: "model"
             })
             .when("/register", {
-                templateUrl: "../views/user/template/user.register.client.view.html",
+                templateUrl: "../views/user/template/user.register.view.client.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
             .when("/profile", {
-                templateUrl: "../views/user/template/user.profile.client.view.html",
+                templateUrl: "../views/user/template/user.profile.view.client.html",
                 controller: "ProfileController",
                 controllerAs: "model",
                 resolve: {
@@ -41,6 +41,16 @@
             .when("/orderEdit", {
                 templateUrl: "../views/order/template/order-edit.view.client.html",
                 controller: "OrderController",
+                controllerAs: "model"
+            })
+            .when("/list", {
+                templateUrl: "../views/foodlist/template/list.view.client.html",
+                controller: "ListController",
+                controllerAs: "model"
+            })
+            .when("/menu", {
+                templateUrl: "../views/foodlist/template/menu.view.client.html",
+                controller: "ListController",
                 controllerAs: "model"
             })
     }

@@ -61,3 +61,12 @@ a:hover{
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.portfolio-item {
+    margin-bottom: 25px;
+}
+
+.list{
+    margin-left: 20px;
+    margin-right: 20px;
+}

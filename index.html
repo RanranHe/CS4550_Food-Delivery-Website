@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rush Delivery</title>
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 
     <link rel="stylesheet" href="views/css/sb-admin-2.min.css"/>
     <link rel="stylesheet" href="views/css/style.css">
 
     <script src="js/libraries/angular.js"></script>
     <script src="js/libraries/angular-route.js"></script>
+    <script src="js/libraries/jquery.js"></script>
+    <script src="js/libraries/bootstrap.min.js"></script>
     <script src="js/libraries/jquery-3.2.1.min.js"></script>
     <script src="js/libraries/jquery-ui.min.js"></script>
     <script src="js/config.js"></script>
@@ -61,21 +64,24 @@
 
 <div ng-view></div>
 
-<nav class="navbar navbar-fixed-bottom" role="navigation">
-    <div class="navbar-toolbar">
-        <ul class="nav navbar-top-links navbar-right">
-            <li>
-                <a href="#">
-                    Contact us
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    FAQ
-                </a>
-            </li>
-        </ul>
-    </div>
+<nav class="navbar navbar-static-bottom" role="navigation">
+    <ul class="nav navbar-bottom-links navbar-left">
+        <div class="col-lg-12">
+            <p>Copyright &copy; Your Website 2014</p>
+        </div>
+    </ul>
+    <ul class="nav navbar-top-links navbar-right">
+        <li>
+            <a href="#">
+                Contact us
+            </a>
+        </li>
+        <li>
+            <a href="#">
+                FAQ
+            </a>
+        </li>
+    </ul>
 </nav>
 </body>
 </html>
