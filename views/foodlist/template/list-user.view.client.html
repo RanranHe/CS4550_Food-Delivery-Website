@@ -1,6 +1,6 @@
 <div class="list">
     <div class="row">
-        <div class="col-sm-2 hidden-xs">
+        <div class="col-sm-2">
             <p class="lead">Filters</p>
             <div class="list-group">
                 <a href="#" class="list-group-item">Category 1</a>
@@ -10,7 +10,7 @@
         </div>
         <div class="col-sm-10">
             <!-- Page Header -->
-            <div class="row">
+            <div class="grow">
                 <div class="col-lg-12">
                     <h1 class="page-header">Restaurants
                     </h1>
@@ -19,181 +19,22 @@
             <!-- /.row -->
 
             <!-- Projects Row -->
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail1">餐厅名字(可以点）</div>
-                        <div id="detail1" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
+            <div ng-repeat="business in model.businesses">
+                <div class="media-left">
+                    <img class="media-object" src="{{business.image_url}}" width="300px" height="250px"/>
                 </div>
-                <div class="col-sm-4 portfolio-item">
-
-                        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail2">餐厅名字(可以点）</div>
-                        <div id="detail2" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-                        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail3">餐厅名字(可以点）</div>
-                        <div id="detail3" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-            </div>
-            <!-- Projects Row -->
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail11">餐厅名字(可以点）</div>
-                        <div id="detail11" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail22">餐厅名字(可以点）</div>
-                        <div id="detail22" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail33">餐厅名字(可以点）</div>
-                        <div id="detail33" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-            </div>
-
-            <!-- Projects Row -->
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail111">餐厅名字(可以点）</div>
-                        <div id="detail111" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail222">餐厅名字(可以点）</div>
-                        <div id="detail222" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-
-                    <h5>
-                        <span href="#" class="glyphicon glyphicon-menu-hamburger pull-right"></span>
-                        <div data-toggle="collapse" data-target="#detail333">餐厅名字(可以点）</div>
-                        <div id="detail333" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
-                            Review:
-                        </div>
-                    </h5>
-                </div>
-            </div>
-
-            <hr>
-
-            <!-- Pagination -->
-            <div class="row text-center">
-                <div class="col-lg-12">
-                    <ul class="pagination">
-                        <li>
-                            <a href="#">&laquo;</a>
+                <div class="media-body">
+                    <h3 class="media-heading">
+                        <b>{{business.name}}</b>
+                    </h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">Type: {{business.categories[0].title}}</li>
+                        <li class="list-group-item">Rate: {{business.rating}}</li>
+                        <li class="list-group-item">Dollars: {{business.price}}</li>
+                        <li class="list-group-item">Address: {{business.location.address1 + " " +
+                            business.location.city + ", " + business.location.zip_code}}
                         </li>
-                        <li class="active">
-                            <a href="#">1</a>
-                        </li>
-                        <li>
-                            <a href="#">2</a>
-                        </li>
-                        <li>
-                            <a href="#">3</a>
-                        </li>
-                        <li>
-                            <a href="#">4</a>
-                        </li>
-                        <li>
-                            <a href="#">5</a>
-                        </li>
-                        <li>
-                            <a href="#">&raquo;</a>
-                        </li>
+                        <li class="list-group-item">Review: {{business.review_count}}</li>
                     </ul>
                 </div>
             </div>

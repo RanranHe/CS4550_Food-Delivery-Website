@@ -9,15 +9,6 @@
         model.user = currentUser;
         var userId = currentUser._id;
 
-        model.hasRole = true;
-        if (currentUser.role === null || currentUser.role === undefined) {
-            model.hasRole = false;
-        } else {
-            model.hasRole = true;
-        }
-        console.log(model.hasRole);
-
-
         model.updateUser = updateUser;
         model.deleteUser = deleteUser;
         model.logout = logout;
@@ -33,23 +24,21 @@
         }
 
         function updateUser() {
-            UserService
-                .updateUser(model.user._id, model.user)
-                .then(function () {
-                    if (model.user.role !== null && model.user.role !== undefined) {
-                        model.hasRole = true;
-                    }
-                    model.error = "Update Successfully.";
-                    if (model.user.role === 'USER') {
-                        model.message = "Welcome, Customer " + model.user.username + "!";
-                    }
-                    if (model.user.role === 'DELIVERYMAN') {
-                        model.message = "Welcome, Delivery Man " + model.user.username + "!"
-                    }
-                    if (model.user.role === "MANAGER") {
-                        model.message = "Welcome, Manager " + model.user.username + "!";
-                    }
-                });
+            if (model.user.role) {
+                if (model.user.role === 'USER') {
+                    model.message = "Welcome, Customer " + model.user.username + "!";
+                }
+                if (model.user.role === 'DELIVERYMAN') {
+                    model.message = "Welcome, Delivery Man " + model.user.username + "!"
+                }
+                if (model.user.role === "MANAGER") {
+                    model.message = "Welcome, Manager " + model.user.username + "!";
+                }
+                UserService
+                    .updateUser(model.user._id, model.user);
+            } else {
+                model.error = "Please select a role!";
+            }
         }
 
         function deleteUser() {
