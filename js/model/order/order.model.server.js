@@ -2,7 +2,7 @@ module.exports = function () {
     var mongoose = require('mongoose');
     var orderSchema = require('./order.schema.server');
 
-    var orderModel = mongoose.model('orderModel', orderSchema);
+    var orderModel = mongoose.model('orders', orderSchema);
     var userModel = require('../order/order.model.server');
 
     orderModel.createOrder = createOrder;
