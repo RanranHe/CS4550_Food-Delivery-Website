@@ -8,8 +8,8 @@
             "findFoodByLocation": findFoodByLocation
         };
 
-        function findFoodByLocation(location, limit) {
-            var url = "/api/yelp" + "?location=" + location + "&limit=" + limit;
+        function findFoodByLocation(location) {
+            var url = "/api/yelp" + "?location=" + location;
             return $http.get(url).then(
                 function(response) {
                     return response.data;

@@ -17,16 +17,17 @@
             }
         }
 
-        function findFoodByLocation(location, limit) {
-            return YelpService.findFoodByLocation(location, limit).then(
+        function findFoodByLocation(location) {
+            return YelpService.findFoodByLocation(location).then(
                 function (response) {
                     var queryResult = JSON.parse(response);
-                    var businesses = queryResult["businesses"];
+                    console.log(queryResult);
+                    var businesses = queryResult["restaurants"];
                     model.businesses = businesses;
                 }
             );
         }
 
-        findFoodByLocation($routeParams.keyword, 20);
+        findFoodByLocation($routeParams.keyword);
     }
 })();

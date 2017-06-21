@@ -94,7 +94,6 @@ module.exports = function (app, models) {
     }
 
     function checkLoggedIn(req, res) {
-        console.log("req.user: " + req.user);
         if (req.isAuthenticated()) {
             res.json(req.user);
         } else {

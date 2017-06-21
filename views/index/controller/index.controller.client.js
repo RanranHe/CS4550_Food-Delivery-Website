@@ -10,6 +10,7 @@
             UserService.checkLoggedIn().then(
                 function(response) {
                     if (response !== '0') {
+                        $scope.username = response.username;
                         $scope.isLoggedIn = true;
                     }
                 }

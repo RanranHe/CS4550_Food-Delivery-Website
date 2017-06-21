@@ -5,8 +5,8 @@ module.exports = function (app) {
 
     function requestFood(req, res) {
         var location = req.query["location"];
-        var limit = req.query["limit"];
-        var url = 'https://api.yelp.com/v3/businesses/search';
+        //var limit = req.query["limit"];
+        var url = 'https://api.eatstreet.com/publicapi/v1/restaurant/search';
         authenticate(function(err, body) {
             var parsed = JSON.parse(body);
             var token = parsed.access_token;
@@ -15,11 +15,10 @@ module.exports = function (app) {
                 url: url,
                 method: 'GET',
                 headers: {
-                    'Authorization': token
+                    'x-access-token': '0854dca160710a95'
                 },
                 qs: {
-                    'location': location,
-                    'limit': limit
+                    'street-address': location
                 }
             };
             request(options, function(error, response, body) {
@@ -30,25 +29,5 @@ module.exports = function (app) {
         });
 
 
-    }
-
-    function authenticate(callback) {
-        var clientId = process.env.YELP_CUSTOMERID;
-        var token = process.env.YELP_TOKEN;
-        var authParams = {
-            grant_type: 'client_credentials',
-            client_id: clientId,
-            client_secret: token
-        };
-        var options = {
-            url: 'https://api.yelp.com/oauth2/token',
-            method: 'POST',
-            form: authParams
-        };
-        request(options, function(error, response, body) {
-            if(!error) {
-                return callback(null, body);
-            }
-        });
     }
 };
