@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now()},
     // For users
     phone: String,
-    orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'orderModel'}],
+    orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'orders'}],
     // For managers
     income: Number,
     restaurants: [String],
