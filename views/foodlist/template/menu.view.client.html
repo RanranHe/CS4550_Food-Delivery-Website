@@ -1,104 +1,30 @@
 <div class="container">
-    <h2>苦逼程序员</h2>
+    <h2>{{model.restaurantName}}</h2>
 
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <div data-toggle="collapse" data-target="#collapse1">Appertizers</div>
-                </h4>
-            </div>
-            <div id="collapse1" class="panel-collapse collapse">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">红烧牛肉</div>
-                            <div class="col-xs-6">￥10.5</div>
-                            <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-minus pull-right"></span>
-                                <span class="glyphicon glyphicon-plus pull-right"></span>
-                            </div>
+    <div ng-repeat="dishType in model.dishTypes">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <div data-toggle="collapse" data-target="#{{dishType.apiKey}}">{{dishType.name}}</div>
+                    </h4>
+                </div>
+                <div id="{{dishType.apiKey}}" class="panel-collapse collapse">
+                    <ul class="list-group">
+                        <div ng-repeat="item in dishType.items">
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-xs-4">{{item.name}}</div>
+                                    <div class="col-xs-6">{{"$" + item.basePrice}}</div>
+                                    <div class="col-xs-2">
+                                        <span class="glyphicon glyphicon-minus pull-right"></span>
+                                        <span class="glyphicon glyphicon-plus pull-right"></span>
+                                    </div>
+                                </div>
+                            </li>
                         </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">虾饺</div>
-                            <div class="col-xs-6">￥5.5</div>
-                            <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-minus pull-right"></span>
-                                <span class="glyphicon glyphicon-plus pull-right"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <div data-toggle="collapse" data-target="#collapse2">Entrees</div>
-                </h4>
-            </div>
-            <div id="collapse2" class="panel-collapse collapse">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">小鸡炖蘑菇</div>
-                            <div class="col-xs-6">￥10.5</div>
-                            <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-minus pull-right"></span>
-                                <span class="glyphicon glyphicon-plus pull-right"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">波士顿大龙虾</div>
-                            <div class="col-xs-6">￥100</div>
-                            <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-minus pull-right"></span>
-                                <span class="glyphicon glyphicon-plus pull-right"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <div data-toggle="collapse" data-target="#collapse3">Beverage</div>
-                </h4>
-            </div>
-            <div id="collapse3" class="panel-collapse collapse">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">珍珠奶茶</div>
-                            <div class="col-xs-6">￥10.5</div>
-                            <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-minus pull-right"></span>
-                                <span class="glyphicon glyphicon-plus pull-right"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">铁观音</div>
-                            <div class="col-xs-6">￥5.5</div>
-                            <div class="col-xs-2">
-                                <span class="glyphicon glyphicon-minus pull-right"></span>
-                                <span class="glyphicon glyphicon-plus pull-right"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

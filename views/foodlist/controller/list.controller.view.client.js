@@ -21,7 +21,6 @@
             return YelpService.findFoodByLocation(location).then(
                 function (response) {
                     var queryResult = JSON.parse(response);
-                    console.log(queryResult);
                     var businesses = queryResult["restaurants"];
                     model.businesses = businesses;
                 }

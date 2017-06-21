@@ -21,20 +21,20 @@
             <!-- Projects Row -->
             <div ng-repeat="business in model.businesses">
                 <div class="media-left">
-                    <img class="media-object" src="{{business.image_url}}" width="300px" height="250px"/>
+                    <img class="media-object" src="{{business.logoUrl}}" width="300px" height="250px"/>
                 </div>
                 <div class="media-body">
                     <h3 class="media-heading">
-                        <b>{{business.name}}</b>
+                        <a href="#!/menu?apikey={{business.apiKey}}&restaurantName={{business.name}}"><b>{{business.name}}</b></a>
                     </h3>
                     <ul class="list-group">
-                        <li class="list-group-item">Type: {{business.categories[0].title}}</li>
-                        <li class="list-group-item">Rate: {{business.rating}}</li>
-                        <li class="list-group-item">Dollars: {{business.price}}</li>
-                        <li class="list-group-item">Address: {{business.location.address1 + " " +
-                            business.location.city + ", " + business.location.zip_code}}
+                        <li class="list-group-item"><b>Food Type:</b> {{business.foodTypes[0] + ", " + business.foodTypes[1]}}</li>
+                        <li class="list-group-item"><b>Minimum waiting Time:</b> {{business.minWaitTime}}</li>
+                        <li class="list-group-item"><b>Phone:</b> {{business.phone}}</li>
+                        <li class="list-group-item"><b>Address:</b> {{business.streetAddress + ", " +
+                            business.city + ", " + business.state + ", " + business.zip}}
                         </li>
-                        <li class="list-group-item">Review: {{business.review_count}}</li>
+                        <li class="list-group-item"><b>Review:</b> {{business.review_count}}</li>
                     </ul>
                 </div>
                 <hr />

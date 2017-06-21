@@ -50,7 +50,7 @@
             })
             .when("/menu", {
                 templateUrl: "../views/foodlist/template/menu.view.client.html",
-                controller: "ListController",
+                controller: "MenuController",
                 controllerAs: "model"
             })
     }
