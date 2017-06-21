@@ -10,7 +10,8 @@
             "login": login,
             "checkLoggedIn": checkLoggedIn,
             "updateUser": updateUser,
-            "deleteUser": deleteUser
+            "deleteUser": deleteUser,
+            "logout": logout
         };
 
         //////////////// Register ///////////////

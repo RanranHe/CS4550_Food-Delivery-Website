@@ -30,10 +30,11 @@
     <script src="views/main/controller/mainpage.controller.client.js"></script>
     <script src="views/foodlist/controller/list.controller.view.client.js"></script>
     <script src="views/order/controller/order.controller.client.js"></script>
+    <script src="views/index/controller/index.controller.client.js"></script>
 
 
 </head>
-<body class="bottomBar" ng-app="RollingFood">
+<body class="bottomBar" ng-app="RollingFood" ng-controller="IndexController">
 
 <nav class="navbar navbar-static-top" role="navigation">
     <div class="navbar-toolbar">
@@ -47,23 +48,39 @@
                 </li>
             </a>
         </ul>
-        <ul class="nav navbar-top-links navbar-right">
-            <li class="medium">
-                <a href="#!/login">
-                    Login
-                </a>
-            </li>
-            <li class="medium">
-                <a href="#!/register">
-                    Register
-                </a>
-            </li>
-            <li class="medium">
-                <a href="#">
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                </a>
-            </li>
-        </ul>
+        <div ng-show="!isLoggedIn">
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="medium">
+                    <a href="#!/login">
+                        Login
+                    </a>
+                </li>
+                <li class="medium">
+                    <a href="#!/register">
+                        Register
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div ng-show="isLoggedIn">
+            <ul class="nav navbar-top-links navbar-right" >
+                <li class="medium">
+                    <a href="#!/orderList">
+                        My Order
+                    </a>
+                </li>
+                <li class="medium">
+                    <a ng-click="logOut()">
+                        Log out
+                    </a>
+                </li>
+                <li class="medium">
+                    <a href="#">
+                        <span class="glyphicon glyphicon-shopping-cart"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
