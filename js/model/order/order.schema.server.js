@@ -7,7 +7,7 @@ var orderSchema = mongoose.Schema({
     creditCard: Number,
     name: String,
     totalPrice: Number,
-    status: {type: String, enum: ['Processing', 'OnTheWay', 'Cancelled']}
+    status: {type: String, enum: ['Processing', 'OnTheWay', 'Cancelled', 'Completed']}
 });
 
 module.exports = orderSchema;

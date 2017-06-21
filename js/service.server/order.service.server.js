@@ -1,14 +1,14 @@
 module.exports = function (app, models) {
     var orderModel = models.orderModel;
 
-    app.post("/api/project/order", createOrder);
-    app.get("/api/project/order", findOrdersByUserId);
+    app.post("/api/project/user/:userId/order", createOrder);
+    app.get("/api/project/user/:userId/order", findOrdersByUserId);
     app.get("/api/project/order/:orderId", findOrderById);
     // Do Edit-Order and Cancel-Order Here
     app.put("/api/project/order/:orderId", updateOrder);
 
     function createOrder(req, res) {
-        var userId = req.params.orderId;
+        var userId = req.params.userId;
         var order = req.body;
 
         orderModel
