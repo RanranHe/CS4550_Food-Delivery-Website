@@ -16,5 +16,11 @@
             );
         }
         findMenuByRestaurant($routeParams.restaurantName, $routeParams.apikey);
+
+        model.addToCart = addToCart;
+
+        function addToCart(name) {
+
+        }
     }
 })();
