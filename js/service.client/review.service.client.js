@@ -16,7 +16,7 @@
             var url = "/api/project/user/" + userId + "/review";
             var data = {
                 userId: userId,
-                website: website
+                review: review
             };
             return $http.post(url, data)
         }
@@ -45,7 +45,7 @@
         }
 
         function deleteReview(reviewid) {
-            var url = "/api/review/" + reviewId;
+            var url = "/api/project/review/" + reviewId;
             return $http
                 .delete(url);
         }

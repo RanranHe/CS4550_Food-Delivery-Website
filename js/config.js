@@ -20,6 +20,22 @@
                 controller: "RegisterController",
                 controllerAs: "model"
             })
+            .when("/account", {
+                templateUrl: "../views/foodlist/template/list.view.client.html",
+                controller: "ListController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when("/restaurantNew", {
+                templateUrl: "../views/restaurant/template/new.view.client.html",
+                controller: "NewRestaurantController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when("/profile", {
                 templateUrl: "../views/user/template/user.profile.view.client.html",
                 controller: "ProfileController",
@@ -46,7 +62,10 @@
             .when("/list", {
                 templateUrl: "../views/foodlist/template/list.view.client.html",
                 controller: "ListController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when("/menu", {
                 templateUrl: "../views/foodlist/template/menu.view.client.html",

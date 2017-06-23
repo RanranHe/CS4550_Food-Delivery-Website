@@ -1,20 +1,21 @@
 module.exports = function (app, models) {
-    var reviewModel = models.reviewModel;
+    var reviewModel = models.restaurantModel;
 
-    app.post("/api/project/user/:userId/review", createReview);
+    app.post("/api/project/user/:userId/restaurant", createRestaurant);
+
     app.get("/api/project/review/", findReviewByRestaurant);
     app.get("/api/project/review/:reviewId", findReviewById);
     app.put("/api/project/review/:reviewId", updateReview);
-    app.delete('/api/project/review/:reviewId', deleteReview);
+    app.delete('/api/review/:reviewId', deleteReview);
 
-    function createReview(req, res) {
+    function createRestaurant(req, res) {
         var userId = req.params.userId;
-        var review = req.body;
+        var restaurant = req.body;
 
         reviewModel
-            .createReview(userId, review)
+            .createRestaurant(userId, restaurant)
             .then(
-                function (review) {
+                function (restaurant) {
                     res.sendStatus(200);
                 },
                 function (err) {

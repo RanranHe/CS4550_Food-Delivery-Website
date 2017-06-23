@@ -2,11 +2,14 @@
     angular.module("RollingFood")
         .controller("ListController", ListController);
 
-    function ListController(YelpService, $routeParams) {
+    function ListController(YelpService, $routeParams, currentUser) {
         var model = this;
         model.getListTemplate = getListTemplate;
+        model.user = currentUser;
+        model.role = currentUser.role;
 
         function getListTemplate(role) {
+            console.log(role);
             switch (role) {
                 case 'USER':
                     return "views/foodlist/template/list-user.view.client.html";
@@ -26,7 +29,6 @@
                 }
             );
         }
-
         findFoodByLocation($routeParams.keyword);
     }
 })();
