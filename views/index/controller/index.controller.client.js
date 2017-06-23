@@ -2,7 +2,7 @@
     angular.module("RollingFood")
         .controller("IndexController", IndexController);
 
-    function IndexController(UserService, $scope, $location) {
+    function IndexController(UserService, CartService, $scope, $location) {
         var model = this;
         $scope.isLoggedIn = false;
 

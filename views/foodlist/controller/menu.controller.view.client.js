@@ -2,7 +2,7 @@
     angular.module("RollingFood")
         .controller("MenuController", MenuController);
 
-    function MenuController(YelpService, $routeParams) {
+    function MenuController(YelpService, CartService, $routeParams) {
         var model = this;
 
         function findMenuByRestaurant(restaurantName, apiKey) {
@@ -20,7 +20,7 @@
         model.addToCart = addToCart;
 
         function addToCart(name) {
-
+            CartService.addToCart(name);
         }
     }
 })();

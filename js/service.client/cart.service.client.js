@@ -8,7 +8,8 @@
         return {
             "addToCart": addToCart,
             "retrieveCart": retrieveCart,
-            "deleteItem": deleteItem
+            "deleteItem": deleteItem,
+            "emptyCart": emptyCart
         };
 
         function addToCart(name) {
@@ -38,6 +39,10 @@
                     return;
                 }
             }
+        }
+
+        function emptyCart() {
+            cart = [];
         }
     }
 })();
