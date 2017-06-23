@@ -81,3 +81,28 @@ a:hover{
 .bottomBar {
     margin-bottom: 5%;
 }
+
+.bigFont {
+    font-size: 20px;
+}
+
+.wideDropdown {
+    width: 600px;
+}
+
+.white {
+    background-color: white;
+}
+
+.grey {
+    background-color: wheat;
+}
+
+.orderPanel {
+    margin-left: 6%;
+    margin-right: 6%
+}
+
+.orderList {
+    margin-bottom: 20px;
+}

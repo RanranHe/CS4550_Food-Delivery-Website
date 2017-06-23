@@ -23,6 +23,7 @@
     <script src="js/service.client/user.service.client.js"></script>
     <script src="js/service.client/yelp.service.client.js"></script>
     <script src="js/service.client/cart.service.client.js"></script>
+    <script src="js/service.client/order.service.client.js"></script>
 
     <!--Controllers-->
     <script src="views/user/controller/login.controller.client.js"></script>
@@ -66,16 +67,19 @@
         </div>
 
         <div ng-show="isLoggedIn">
-            <ul class="nav navbar-top-links navbar-right" >
+            <ul class="nav navbar-top-links navbar-right">
                 <li class="medium">
                     <div class="dropdown show">
-                        <a href="#" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
                             <span class="glyphicon glyphicon-user"></span> {{username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a href="#!/profile" class="dropdown-item">Profile</a>
+                            <a href="#!/profile" class="dropdown-item bigFont">
+                                <span class="glyphicon glyphicon-pencil"></span>    Profile</a>
                             <br>
-                            <a ng-click="logOut()" class="dropdown-item">Logout</a>
+                            <a ng-click="logOut()" class="dropdown-item bigFont">
+                                <span class="glyphicon glyphicon-log-out"></span>    Log Out</a>
                         </div>
                     </div>
                 </li>
@@ -85,9 +89,32 @@
                     </a>
                 </li>
                 <li class="medium">
-                    <a href="#">
-                        <span class="glyphicon glyphicon-shopping-cart"></span>
-                    </a>
+                    <div class="dropdown show">
+                        <a id="cartLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                        </a>
+                        <div class="dropdown-menu wideDropdown" aria-labelledby="cartLink">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Price</th>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="cartItem in cartItems">
+                                        <td>{{cartItem.name}}</td>
+                                        <td>{{cartItem.quantity}}</td>
+                                        <td>{{cartItem.price}}</td>
+                                        <td><button ng-click="deleteItem(cartItem.name)">
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        </button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="#!/orderNew" class="btn btn-danger">Check Out</a>
+
+                        </div>
+                    </div>
                 </li>
             </ul>
         </div>

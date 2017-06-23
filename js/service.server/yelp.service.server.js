@@ -23,7 +23,6 @@ module.exports = function (app) {
             if(!error) {
                 res.json(body);
             }
-            console.log(error);
         });
 
     }

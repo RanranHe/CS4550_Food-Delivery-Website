@@ -19,8 +19,8 @@
 
         model.addToCart = addToCart;
 
-        function addToCart(name) {
-            CartService.addToCart(name);
+        function addToCart(name, price) {
+            CartService.addToCart(name, price);
         }
     }
 })();

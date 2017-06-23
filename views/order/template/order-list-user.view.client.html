@@ -1,83 +1,26 @@
-<section class="row profileinmiddle">
-    <div class="list-group-item">
-        <h5 class="header">My Orders</h5>
-    </div>
-
-    <div class="list-group-item">
-        <div class="row">
-            <div class="col-xs-4">
-                <div data-toggle="collapse" data-target="#collapse3">Order1</div>
-            </div>
-            <div class="col-xs-5 hidden-xs">
-                <div>Date</div>
-            </div>
-            <div class="col-xs-3">
-                <button onclick="popUp()" class="pull-right">Cancel</button>
-            </div>
-
-        </div>
-
-            <div class="row">
-                <div class="col-xs-4">珍珠奶茶</div>
-                <div class="col-xs-3 hidden-xs">1</div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">珍珠奶茶</div>
-                <div class="col-xs-3 hidden-xs">1</div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">Total:</div>
-                <div class="col-xs-3 hidden-xs"></div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
+<div class="panel panel-default orderPanel">
+    <div class="panel-heading">
+        <b><h3 class="header">My Orders</h3></b>
+        <div class="panel-body">
+            <ul class="list-group">
+                <div ng-repeat="order in model.orders">
+                    <a data-toggle="collapse" data-target="#{{order._id}}" aria-expanded="false" class="list-group-item grey"><b><h4>Order on date: {{order.date}}</h4></b></a>
+                    <div class="orderList" id="{{order._id}}">
+                        <li class="list-group-item">
+                            <b>Order by:</b> {{order.name}}
+                        </li>
+                        <li class="list-group-item">
+                            <b>Phone Number:</b> {{order.phone}}
+                        </li>
+                        <li class="list-group-item">
+                            <b>Total Price:</b> {{order.totalPrice}}
+                        </li>
+                        <li class="list-group-item">
+                            <b>Current Status: </b> {{order.status}}
+                        </li>
+                    </div>
+                </div>
+            </ul>
         </div>
     </div>
-
-    <div class="list-group-item">
-        <button onclick="popUp()" class="pull-right">Cancel</button>
-        <div data-toggle="collapse" data-target="#collapse2">Order1</div>
-        <div id="collapse2" class="panel-collapse collapse">
-
-            <div class="row">
-                <div class="col-xs-4">珍珠奶茶</div>
-                <div class="col-xs-3 hidden-xs">1</div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">珍珠奶茶</div>
-                <div class="col-xs-3 hidden-xs">1</div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">Total:</div>
-                <div class="col-xs-3 hidden-xs"></div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="list-group-item">
-        <button onclick="popUp()" class="pull-right">Cancel</button>
-        <div data-toggle="collapse" data-target="#collapse1">Order1</div>
-        <div id="collapse1" class="panel-collapse collapse">
-
-            <div class="row">
-                <div class="col-xs-4">珍珠奶茶</div>
-                <div class="col-xs-3 hidden-xs">1</div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">珍珠奶茶</div>
-                <div class="col-xs-3 hidden-xs">1</div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-            <div class="row">
-                <div class="col-xs-4">Total:</div>
-                <div class="col-xs-3 hidden-xs"></div>
-                <div class="col-xs-3">￥5.5</div>
-            </div>
-        </div>
-    </div>
-</section>
+</div>

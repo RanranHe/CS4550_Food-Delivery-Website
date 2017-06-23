@@ -18,6 +18,13 @@
         }
         init();
 
+        $scope.cartItems = CartService.retrieveCart();
+        $scope.deleteItem = deleteItem;
+
+        function deleteItem(name) {
+            CartService.deleteItem(name);
+        }
+
         function logOut() {
             UserService.logout();
             $scope.isLoggedIn = false;
@@ -26,5 +33,9 @@
         }
 
         $scope.logOut = logOut;
+
+        function checkOut() {
+
+        }
     }
 })();
