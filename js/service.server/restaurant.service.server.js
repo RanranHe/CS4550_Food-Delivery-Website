@@ -1,5 +1,5 @@
 module.exports = function (app, models) {
-    var reviewModel = models.restaurantModel;
+    var restaurantModel = models.restaurantModel;
 
     app.post("/api/project/user/:userId/restaurant", createRestaurant);
 
@@ -12,7 +12,7 @@ module.exports = function (app, models) {
         var userId = req.params.userId;
         var restaurant = req.body;
 
-        reviewModel
+        restaurantModel
             .createRestaurant(userId, restaurant)
             .then(
                 function (restaurant) {

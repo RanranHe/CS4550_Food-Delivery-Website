@@ -2,16 +2,16 @@ module.exports = function () {
     var mongoose = require('mongoose');
     var restaurantSchema = require('./restaurant.schema.server');
 
-    var restaurantModel = mongoose.model('orders', restaurantSchema);
+    var restaurantModel = mongoose.model('restaurants', restaurantSchema);
     var userModel = require('../user/user.model.server');
 
     restaurantModel.createRestaurant = createRestaurant;
 
-    orderModel.updateOrder = updateOrder;
-    orderModel.findOrdersByUserId = findOrdersByUserId;
-    orderModel.findOrderById = findOrderById;
+    // orderModel.updateOrder = updateOrder;
+    // orderModel.findOrdersByUserId = findOrdersByUserId;
+    // orderModel.findOrderById = findOrderById;
 
-    module.exports = orderModel;
+    module.exports = restaurantModel;
 
     return {
         createRestaurant: createRestaurant,
@@ -25,11 +25,11 @@ module.exports = function () {
         restaurant._user = userId;
         return restaurantModel
             .collection.insert(restaurant)
-            .then(function (restaurant) {
-                var userId = restaurant._user;
-                var restaurantId = restaurant._id;
-                userModel.addOrderToRestaurantArray(userId, restaurantId);
-            })
+            // .then(function (restaurant) {
+            //     var userId = restaurant._user;
+            //     var restaurantId = restaurant._id;
+            //     userModel.addOrderToRestaurantArray(userId, restaurantId);
+            // })
     }
 
     function updateOrder(orderId, order) {

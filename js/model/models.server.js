@@ -6,7 +6,7 @@ module.exports = function (app) {
     var userModel = require("./user/user.model.server.js")(app);
     var orderModel = require("./order/order.model.server")(app);
     var reviewModel = require("./review/review.model.server")(app);
-    var restaurantModel = require("./restaurant/restaurant.model.server");
+    var restaurantModel = require("./restaurant/restaurant.model.server")(app);
 
     var models = {
         userModel: userModel,
