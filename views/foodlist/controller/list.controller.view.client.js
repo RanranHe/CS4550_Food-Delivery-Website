@@ -9,14 +9,7 @@
         model.role = currentUser.role;
 
         function getListTemplate(role) {
-            switch (role) {
-                case 'USER':
-                    return "views/foodlist/template/list-user.view.client.html";
-                case 'DELIVERYMAN':
-                    return "views/foodlist/template/list-delivery.view.client.html";
-                case "MANAGER":
-                    return "views/foodlist/template/list-manager.view.client.html";
-            }
+            return "views/foodlist/template/list-user.view.client.html";
         }
 
         function findFoodByLocation(location) {

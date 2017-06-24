@@ -64,8 +64,23 @@
 
         model.removeItemInFoods = removeItemInFoods;
 
-        function removeItemInFoods() {
-
+        function removeItemInFoods(name) {
+            var item = model.foods.find(function(food) {
+                return food.name === name;
+            });
+            var index = model.foods.indexOf(item);
+            if (index > -1) {
+                model.foods.splice(index, 1);
+                updateItemsInFoods();
+            }
         }
+
+        model.updateItemsInFoods = updateItemsInFoods;
+        function updateItemsInFoods() {
+            model.restaurant.food = model.foods;
+            RestaurantService.updateRestaurant(restaurantId, model.restaurant);
+            location.reload();
+        }
+
     }
 })();
