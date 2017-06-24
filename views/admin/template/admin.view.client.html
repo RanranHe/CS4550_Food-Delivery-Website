@@ -1,5 +1,5 @@
 <section class="profileinmiddle">
-    <div class="input-group searchbar">
+    <div class="input-group admin-searchbar">
         <input type="text" class="form-control" ng-model="searchText">
         <span class="input-group-btn">
         <a class="btn btn-default" type="button" ng-click="model.searchUser(searchText)" style="margin-top: 0px">
@@ -7,8 +7,6 @@
         </a>
     </span>
     </div>
-
-
 </section>
 
 <div class="container-fluid">
@@ -44,11 +42,11 @@
                 <div class="col-md-2 visible-lg">
                     {{user.dateCreated}}
                 </div>
-                <div class="admin-edit-Tool"
-                <a href="../website/website-edit.html">
-                    <span class="glyphicon glyphicon-cog pull-right"></span>
-                </a>
-
+                <div class="admin-edit-Tool">
+                    <a href="#!/admin/user/{{user._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
             </div>
         </li>
     </ul>

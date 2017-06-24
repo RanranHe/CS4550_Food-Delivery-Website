@@ -73,8 +73,7 @@ module.exports = function () {
     }
 
     function searchUsers(searchText) {
-        console.log("model: " + searchText)
-        return userModel.find({username: searchText});
+        return userModel.find({username: {$regex:searchText + ""}});
     }
 
     //////////////////Helper Functions////////////////////

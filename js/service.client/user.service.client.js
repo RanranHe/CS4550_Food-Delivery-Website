@@ -9,6 +9,7 @@
             "findUserByUsername": findUserByUsername,
             "login": login,
             "checkLoggedIn": checkLoggedIn,
+            "findUserById": findUserById,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
             "logout": logout,
@@ -57,6 +58,10 @@
         }
 
         //////////////////////////////////////
+        function findUserById(userId) {
+            return $http.get("/api/project/user/"+ userId);
+        }
+
         function updateUser(userId, newUser) {
             var url = "/api/project/user/" + userId;
             var data = {

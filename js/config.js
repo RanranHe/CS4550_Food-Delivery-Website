@@ -6,14 +6,19 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/admin", {
-                templateUrl: "../views/admin/admin.view.client.html",
+                templateUrl: "../views/admin/template/admin.view.client.html",
                 controller: "AdminController",
+                controllerAs: "model"
+            })
+            .when("/admin/user/:userId", {
+                templateUrl: "../views/admin/template/admin-edit.view.client.html",
+                controller: "AdminEditController",
                 controllerAs: "model"
             })
             .when("/login", {
                 templateUrl: "../views/user/template/user.login.view.client.html",
                 controller: "LoginController",
-                controllerAs: "model",
+                controllerAs: "model"
             })
             .when("/", {
                 templateUrl: "../views/main/template/mainpage.view.client.html",

@@ -21,6 +21,7 @@ module.exports = function (app, models) {
     app.post("/api/project/login", passport.authenticate('local'), login);
     app.get('/api/project/checkLoggedIn', checkLoggedIn);
 
+    app.get('/api/project/user/:userId', findUserById);
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
     app.post("/api/project/logout", logout);
@@ -119,6 +120,18 @@ module.exports = function (app, models) {
             );
     }
     ////////////////////////////////////////
+    function findUserById(req, res) {
+        var userId = req.params['userId'];
+
+        userModel
+            .findUserById(userId)
+            .then(function(user) {
+                res.json(user)
+            }, function(err) {
+                res.send(err)
+            })
+    }
+
     function updateUser(req, res) {
         var id = req.body.id;
         var newUser = req.body.newUser;
@@ -252,11 +265,9 @@ module.exports = function (app, models) {
 
     function searchUsers(req, res) {
         var searchText = req.query['searchText'];
-        console.log("searchText: " + searchText)
         userModel
             .searchUsers(searchText)
             .then(function (users) {
-                console.log("client: " +users)
                 res.json(users);
             }, function (err) {
                 res.send(null);

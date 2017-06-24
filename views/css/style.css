@@ -121,7 +121,9 @@ a:hover{
 .admin-edit-Tool {
     margin-right: 3%;
 }
-
+.admin-searchbar {
+    margin-bottom: 10px;
+}
 .content {
     min-height: calc(95vh - 70px);
 }
