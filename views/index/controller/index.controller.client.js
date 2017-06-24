@@ -17,6 +17,7 @@
                         $scope.isLoggedIn = true;
                         if (response.role === "MANAGER") {
                             $scope.isManager = true;
+                            return;
                         }
                         if (response.role === "DELIVERYMAN") {
                             $scope.isDeliveryMan = true;

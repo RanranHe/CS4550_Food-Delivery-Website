@@ -11,9 +11,6 @@
         model.login = function (username, password) {
             model.checkUsername = true;
             model.checkPassword = true;
-            if (username === "admin" && password === "admin") {
-                $location.url("/admin");
-            }
             if ((username === "" || username === undefined || username === null)
                 && (password === "" || password === undefined || password === null)) {
                 model.checkUsername = false;
@@ -39,7 +36,13 @@
 
             function login(found) {
                 if (found !== null) {
-                    window.location.href = "#!/profile";
+                    if (found.role === 'ADMIN') {
+                        $location.url("/admin");
+                        location.reload()
+                    } else {
+                        window.location.href = "#!/profile";
+                        location.reload()
+                    }
                 } else {
                     model.message = "Username " + username + " not found, please try again";
                 }

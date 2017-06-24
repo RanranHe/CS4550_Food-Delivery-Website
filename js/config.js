@@ -8,12 +8,18 @@
             .when("/admin", {
                 templateUrl: "../views/admin/template/admin.view.client.html",
                 controller: "AdminController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when("/admin/user/:userId", {
                 templateUrl: "../views/admin/template/admin-edit.view.client.html",
                 controller: "AdminEditController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
             .when("/login", {
                 templateUrl: "../views/user/template/user.login.view.client.html",
