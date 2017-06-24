@@ -36,7 +36,7 @@
 
             function login(found) {
                 if (found !== null) {
-                    $location.url('/profile');
+                    window.location.href = "#!/profile";
                 } else {
                     model.message = "Username " + username + " not found, please try again";
                 }

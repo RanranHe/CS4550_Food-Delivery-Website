@@ -1,13 +1,12 @@
 module.exports = function (app, models) {
     var restaurantModel = models.restaurantModel;
 
-
     app.post("/api/project/user/:userId/restaurant", createRestaurant);
     app.get("/api/project/restaurant/:restaurantId", findRestaurantById);
     app.get("/api/project/user/:userId/restaurant", findRestaurantByUserId);
-
-    app.put("/api/project/review/:reviewId", updateReview);
-    app.delete('/api/review/:reviewId', deleteReview);
+    app.put("/api/project/restaurant/:restaurantId", updateRestaurant);
+    app.delete('/api/project/restaurant/:restaurantId', deleteRestaurant);
+    app.put("/api/project/restaurant/insertFood/:restaurantId", insertFood);
 
     function createRestaurant(req, res) {
         var userId = req.params.userId;
@@ -17,7 +16,7 @@ module.exports = function (app, models) {
             .createRestaurant(userId, restaurant)
             .then(
                 function (restaurant) {
-                    res.sendStatus(200);
+                    res.json(restaurant);
                 },
                 function (err) {
                 });
@@ -37,57 +36,42 @@ module.exports = function (app, models) {
 
     function findRestaurantByUserId(req, res) {
         var userId = req.params['userId'];
-
         restaurantModel
             .findRestaurantByUserId(userId)
-            .then(function (restaurantIds) {
-                restaurantModel
-                    .findRestaurantsByIds(restaurantIds)
-                    .then(function (restaurants) {
-                        var finalHashWidgetList = getHashedList(restaurants);
-                        // Helper function
-                        function getHashedList(restaurants) {
-                            var hashRestaurantList = [];
-                            for (var i in restaurants) {
-                                hashRestaurantList[restaurants[i]._id] = restaurants[i];
-                            }
-                            return hashRestaurantList;
-                        }
-
-                        var restaurantList = [];
-
-                        for (var i = 0; i < restaurantIds.length; i++) {
-                            var restaurantId = restaurantIds[i];
-                            var restaurant = finalHashWidgetList[restaurantId];
-                            restaurantList.push(restaurant);
-                        }
-                        console.log("service: " + restaurantList)
-                        res.json(restaurantList);
-                    })
+            .then(function (restaurants) {
+                res.json(restaurants);
             });
     }
 
-    function updateReview(req, res) {
-        var reviewId = req.params['reviewId'];
-        var review = req.body;
-
-        reviewModel
-            .updateReview(reviewId, review)
+    function updateRestaurant(req, res) {
+        var restaurantId = req.params['restaurantId'];
+        var restaurant = req.body;
+        restaurantModel
+            .updateRestaurantById(restaurantId, restaurant)
             .then(function (response) {
                 res.json(response);
             });
     }
 
-    function deleteReview(req, res) {
-        var reviewId = req.params.reviewId;
-        reviewModel
-            .deleteReview(reviewId)
-            .then(function (status) {
-                    res.json(200);
-                },
-                function (err) {
-                    res.status(404).send(err);
-                });
+    function deleteRestaurant(req, res) {
+        var restaurantId = req.params.restaurantId;
+        restaurantModel
+            .deleteRestaurantById(restaurantId)
+            .then(
+                function (response) {
+                    res.json(response);
+                }
+            );
+    }
+
+    function insertFood(req, res) {
+        var restaurantId = req.params['restaurantId'];
+        var newFood = req.body;
+        restaurantModel.insertFood(restaurantId, newFood).then(
+            function(response) {
+                res.json(response);
+            }
+        )
     }
 
 };

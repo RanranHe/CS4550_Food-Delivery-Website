@@ -8,6 +8,9 @@ module.exports = function () {
     restaurantModel.createRestaurant = createRestaurant;
     restaurantModel.findRestaurantById = findRestaurantById;
     restaurantModel.findRestaurantByUserId = findRestaurantByUserId;
+    restaurantModel.deleteRestaurantById = deleteRestaurant;
+    restaurantModel.updateRestaurantById = updateRestaurant;
+    restaurantModel.insertFood = insertFood;
     // Helper
     restaurantModel.findRestaurantsByIds = findRestaurantsByIds;
 
@@ -18,13 +21,14 @@ module.exports = function () {
         findRestaurantById: findRestaurantById,
         findRestaurantByUserId: findRestaurantByUserId,
         //Helper
-        findRestaurantsByIds: findRestaurantsByIds
+        findRestaurantsByIds: findRestaurantsByIds,
+        deleteRestaurantById: deleteRestaurant,
+        updateRestaurantById: updateRestaurant,
+        insertFood: insertFood
     };
 
     function createRestaurant(userId, restaurant) {
         restaurant._user = userId;
-
-        console.log("name: " + restaurant.name)
         return restaurantModel
             .create(restaurant)
             .then(function (newRestaurant) {
@@ -39,14 +43,9 @@ module.exports = function () {
     //     return restaurantModel.find({_user: userId});
     // }
     function findRestaurantByUserId(userId) {
-
-        return userModel.findUserById(userId)
-            .then(function (user) {
-                console.log("model: " + user._id)
-                console.log("model: " + user.restaurants)
-                return user.restaurants;
-            })
+        return restaurantModel.find({_user: userId});
     }
+
     function updateOrder(orderId, order) {
         return orderModel.update(
             {_id: orderId},
@@ -58,6 +57,18 @@ module.exports = function () {
         return restaurantModel.find(
             {_id: {$in: restaurantIds}}
         )
+    }
+
+    function deleteRestaurant(restaurantId) {
+        return restaurantModel.remove({_id: restaurantId});
+    }
+
+    function updateRestaurant(restaurantId, restaurant) {
+        return restaurantModel.update({_id: restaurantId}, {$set: restaurant})
+    }
+
+    function insertFood(restaurantId, newFood) {
+        return restaurantModel.update({_id: restaurantId}, {$push: {food: newFood}});
     }
 
 };

@@ -1,0 +1,92 @@
+<div class="panel panel-default orderPanel">
+    <div class="panel-heading"><b><h2>{{model.restaurant.name}}</h2></b></div>
+    <div class="panel-body">
+        <label for="name">Name</label>
+        <input id="name"
+               ng-model="model.restaurant.name"
+               class="form-control"/>
+
+        <label for="name">FoodType</label>
+        <input id="foodtype"
+               ng-model="model.restaurant.foodType"
+               class="form-control"/>
+
+        <label for="name">Phone</label>
+        <input id="phone"
+               ng-model="model.restaurant.phone"
+               class="form-control"/>
+
+        <label for="address">Address</label>
+        <input id="address"
+               type="text"
+               ng-model="model.restaurant.address"
+               class="form-control"/>
+
+        <label for="city">City</label>
+        <input id="city"
+               type="text"
+               ng-model="model.restaurant.city"
+               class="form-control"/>
+
+        <label for="state">State</label>
+        <input id="state"
+               type="text"
+               ng-model="model.restaurant.state"
+               class="form-control"/>
+
+        <label for="zip">Zip</label>
+        <input id="zip"
+               type="text"
+               ng-model="model.restaurant.zip"
+               class="form-control"/>
+
+        <div>
+            <label for="url">URL</label>
+            <input type="url"
+                   class="form-control"
+                   id="url"
+                   placeholder="Image URL"
+                   ng-model="model.restaurant.url">
+        </div>
+
+        <a ng-click="model.updateRestaurant(model.restaurant)"
+           class="btn btn-block btn-primary">Update</a>
+        <a href="#!/account" class="btn btn-block btn-success">Cancel</a>
+    </div>
+</div>
+
+<div class="panel panel-default orderPanel">
+    <div class="panel-heading">
+        <b><h2>Editing Menu</h2></b>
+    </div>
+    <div class="panel-body">
+        <div class="col-md-4"><label for="dishname">Dish Name</label>
+            <input id="dishname"
+                   ng-model="model.newFood.name"
+                   class="form-control"/>
+        </div>
+        <div class="col-md-2">
+            <label for="dishprice">Dish Price</label>
+            <input id="dishprice"
+                   ng-model="model.newFood.price"
+                   class="form-control"/>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-info" style="margin-top: 25px" ng-click="model.addFood(model.newFood)">Add</a>
+        </div>
+        <table class="table table-striped">
+            <thead>
+            <th>Name</th>
+            <th>Price</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="food in model.foods">
+                <td><input type="text" ng-model="food.name"></td>
+                <td><input type="text" ng-model="food.price"></td>
+                <td><a class="btn btn-danger" ng-click="model.removeItemInFoods(food.name)">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-info" ng-click="model.upateItemsInFoods()">Update Items</a>
+    </div>
+</div>

@@ -110,3 +110,9 @@ a:hover{
 .editRestaurant {
     margin-right: 5px;
 }
+
+.smButton {
+    margin-left: 10px;
+    width: 100px;
+    height: 35px;
+}

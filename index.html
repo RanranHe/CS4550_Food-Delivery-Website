@@ -77,14 +77,15 @@
                            aria-expanded="false">
                             <span class="glyphicon glyphicon-user"></span> {{username}}
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <a href="#!/account" class="dropdown-item bigFont">
-                                <span class="glyphicon glyphicon-pencil"></span>    My Account</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px">
+                            <a href="#!/account" class="dropdown-item bigFont" ng-show="isManager">
+                                <span class="glyphicon glyphicon-pencil"></span> Management</a>
+                            <br>
                             <a href="#!/profile" class="dropdown-item bigFont">
-                                <span class="glyphicon glyphicon-pencil"></span>    Profile</a>
+                                <span class="glyphicon glyphicon-pencil"></span> Profile</a>
                             <br>
                             <a ng-click="logOut()" class="dropdown-item bigFont">
-                                <span class="glyphicon glyphicon-log-out"></span>    Log Out</a>
+                                <span class="glyphicon glyphicon-log-out"></span> Log Out</a>
                         </div>
                     </div>
                 </li>
@@ -101,19 +102,21 @@
                         <div class="dropdown-menu wideDropdown" aria-labelledby="cartLink">
                             <table class="table table-striped">
                                 <thead>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="cartItem in cartItems">
-                                        <td>{{cartItem.name}}</td>
-                                        <td>{{cartItem.quantity}}</td>
-                                        <td>{{cartItem.price}}</td>
-                                        <td><button ng-click="deleteItem(cartItem.name)">
+                                <tr ng-repeat="cartItem in cartItems">
+                                    <td>{{cartItem.name}}</td>
+                                    <td>{{cartItem.quantity}}</td>
+                                    <td>{{cartItem.price}}</td>
+                                    <td>
+                                        <button ng-click="deleteItem(cartItem.name)">
                                             <span class="glyphicon glyphicon-minus"></span>
-                                        </button></td>
-                                    </tr>
+                                        </button>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                             <a href="#!/orderNew" class="btn btn-danger">Check Out</a>

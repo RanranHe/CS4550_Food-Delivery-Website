@@ -6,6 +6,16 @@
            ng-model="name"
            class="form-control"/>
 
+    <label for="name">FoodType</label>
+    <input id="foodtype"
+           ng-model="foodtype"
+           class="form-control"/>
+
+    <label for="name">Phone</label>
+    <input id="phone"
+           ng-model="phone"
+           class="form-control"/>
+
     <label for="address">Address</label>
     <input id="address"
            type="text"
@@ -26,7 +36,7 @@
 
     <label for="zip">Zip</label>
     <input id="zip"
-           type="number"
+           type="text"
            ng-model="zip"
            class="form-control"/>
 
@@ -36,10 +46,10 @@
                class="form-control"
                id="url"
                placeholder="Image URL"
-               ng-model="model.restaurant.url">
+               ng-model="url">
     </div>
 
-    <a ng-click="model.createRestaurant(name, address, city, state, zip)"
+    <a ng-click="model.createRestaurant(name, address, city, state, zip, foodtype, phone, url)"
        class="btn btn-block btn-primary">Submit</a>
     <a href="#!/account" class="btn btn-block btn-success">Cancel</a>
 </div>

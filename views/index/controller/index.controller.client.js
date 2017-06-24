@@ -5,6 +5,8 @@
     function IndexController(UserService, CartService, $scope, $location) {
         var model = this;
         $scope.isLoggedIn = false;
+        $scope.isManager = false;
+
 
         function init() {
             UserService.checkLoggedIn().then(
@@ -12,6 +14,9 @@
                     if (response !== '0') {
                         $scope.username = response.username;
                         $scope.isLoggedIn = true;
+                        if (response.role === "MANAGER") {
+                            $scope.isManager = true;
+                        }
                     }
                 }
             );
@@ -33,9 +38,5 @@
         }
 
         $scope.logOut = logOut;
-
-        function checkOut() {
-
-        }
     }
 })();

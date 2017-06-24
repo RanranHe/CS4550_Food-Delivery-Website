@@ -9,7 +9,6 @@
         model.role = currentUser.role;
 
         function getListTemplate(role) {
-            console.log(role);
             switch (role) {
                 case 'USER':
                     return "views/foodlist/template/list-user.view.client.html";

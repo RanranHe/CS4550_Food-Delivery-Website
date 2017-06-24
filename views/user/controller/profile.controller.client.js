@@ -3,7 +3,7 @@
         .module("RollingFood")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController(currentUser, $location, $rootScope, $routeParams, UserService) {
+    function ProfileController(currentUser, $location, UserService) {
         var model = this;
 
         model.user = currentUser;

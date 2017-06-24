@@ -8,7 +8,7 @@
             .when("/login", {
                 templateUrl: "../views/user/template/user.login.view.client.html",
                 controller: "LoginController",
-                controllerAs: "model"
+                controllerAs: "model",
             })
             .when("/", {
                 templateUrl: "../views/main/template/mainpage.view.client.html",
@@ -33,8 +33,15 @@
                 controller: "NewRestaurantController",
                 controllerAs: "model",
                 resolve: {
-                    currentUser: checkLoggedIn,
-                    currentRestaurant:checkRestaurant
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when("/restaurant/:restaurantId", {
+                templateUrl: "../views/restaurant/template/restaurant.edit.view.client.html",
+                controller: "EditRestaurantController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
                 }
             })
             .when("/profile", {
@@ -85,23 +92,6 @@
                     $location.url('/login');
                 } else {
                     deferred.resolve(currentUser);
-                }
-            });
-        return deferred.promise;
-    }
-
-    function checkRestaurant($q, $location, RestaurantService) {
-        var deferred = $q.defer();
-        console.log("deferred" + deferred)
-        RestaurantService
-            .checkRestaurant()
-            .then(function (currentRestaurant) {
-                console.log("config currentRestaurant " + currentRestaurant)
-                if (currentRestaurant === '0') {
-                    deferred.reject();
-                    $location.url('/login');
-                } else {
-                    deferred.resolve(currentRestaurant);
                 }
             });
         return deferred.promise;
