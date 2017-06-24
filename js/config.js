@@ -78,10 +78,7 @@
             .when("/list", {
                 templateUrl: "../views/foodlist/template/list.view.client.html",
                 controller: "ListController",
-                controllerAs: "model",
-                resolve: {
-                    currentUser: checkLoggedIn
-                }
+                controllerAs: "model"
             })
             .when("/menu", {
                 templateUrl: "../views/foodlist/template/menu.view.client.html",

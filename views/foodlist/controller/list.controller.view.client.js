@@ -2,22 +2,29 @@
     angular.module("RollingFood")
         .controller("ListController", ListController);
 
-    function ListController(YelpService, RestaurantService, ReviewService, $routeParams, currentUser) {
+    function ListController(YelpService, RestaurantService, UserService, ReviewService, $routeParams) {
         var model = this;
         model.getListTemplate = getListTemplate;
-        model.user = currentUser;
-        model.role = currentUser.role;
         model.isManager = false;
 
         function init() {
-            if (model.role === "MANAGER") {
-                model.isManager = true;
-            }
-            RestaurantService
-                .findRestaurantByUserId(currentUser._id)
-                .then(function (restaurants) {
-                    model.restaurants = restaurants;
-                });
+            UserService.checkLoggedIn().then(function (currentUser) {
+                model.user = currentUser;
+                model.role = currentUser.role;
+
+                if (model.role === "MANAGER") {
+                    model.isManager = true;
+                }
+                if (model.user === "0") {
+                    return;
+                } else {
+                    RestaurantService
+                        .findRestaurantByUserId(model.user._id)
+                        .then(function (restaurants) {
+                            model.restaurants = restaurants;
+                        });
+                }
+            });
         }
 
         init();
@@ -41,11 +48,11 @@
         model.submitReview = submitReview;
 
         function submitReview(restaurantKey, reviewText) {
-            if (currentUser === "0") {
+            if (model.user === "0") {
                 model.error = "Please login to proceed!";
             } else {
                 var newReview = {
-                    _user: currentUser.username,
+                    _user: model.user.username,
                     restaurant: restaurantKey,
                     text: reviewText
                 };
