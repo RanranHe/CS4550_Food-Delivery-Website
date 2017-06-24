@@ -11,7 +11,8 @@
             "checkLoggedIn": checkLoggedIn,
             "updateUser": updateUser,
             "deleteUser": deleteUser,
-            "logout": logout
+            "logout": logout,
+            "searchUsers": searchUsers
         };
 
         //////////////// Register ///////////////
@@ -72,6 +73,10 @@
 
         function logout() {
             return $http.post("/api/project/logout");
+        }
+
+        function searchUsers(searchText) {
+            return $http.get("/api/project/search?searchText="+searchText);
         }
     }
 })();

@@ -116,3 +116,8 @@ a:hover{
     width: 100px;
     height: 35px;
 }
+
+/*Admin*/
+.admin-edit-Tool {
+    margin-right: 3%;
+}

@@ -13,6 +13,7 @@ module.exports = function (app, models) {
 
     //=====================================================================
 
+    app.get("/api/project/search/", searchUsers);
     app.post('/api/project/register', register);
     app.post('/api/project/user', createUser);
     app.get('/api/project/user/', findUserByUsername);
@@ -247,5 +248,18 @@ module.exports = function (app, models) {
                     if (err) { return done(err); }
                 }
             );
+    }
+
+    function searchUsers(req, res) {
+        var searchText = req.query['searchText'];
+        console.log("searchText: " + searchText)
+        userModel
+            .searchUsers(searchText)
+            .then(function (users) {
+                console.log("client: " +users)
+                res.json(users);
+            }, function (err) {
+                res.send(null);
+            });
     }
 };

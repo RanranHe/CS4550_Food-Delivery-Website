@@ -30,6 +30,7 @@ module.exports = function () {
         deleteUser: deleteUser,
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId: findUserByGoogleId,
+        searchUsers: searchUsers,
         /////////Helper///////////////
         addOrderToOrderArray: addOrderToOrderArray,
         addOrderToRestaurantArray: addOrderToRestaurantArray
@@ -71,6 +72,11 @@ module.exports = function () {
         return userModel.findOne({'google.id': googleId});
     }
 
+    function searchUsers(searchText) {
+        console.log("model: " + searchText)
+        return userModel.find({username: searchText});
+    }
+
     //////////////////Helper Functions////////////////////
     function addOrderToOrderArray(userId, orderId) {
         return userModel
@@ -88,4 +94,6 @@ module.exports = function () {
                 return user.save();
             })
     }
+
+
 };

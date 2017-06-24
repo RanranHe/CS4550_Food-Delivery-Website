@@ -1,0 +1,55 @@
+<section class="profileinmiddle">
+    <div class="input-group searchbar">
+        <input type="text" class="form-control" ng-model="searchText">
+        <span class="input-group-btn">
+        <a class="btn btn-default" type="button" ng-click="model.searchUser(searchText)" style="margin-top: 0px">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+    </div>
+
+
+</section>
+
+<div class="container-fluid">
+    <ul class="list-group">
+        <li class="list-group-item active">
+            <div class="row">
+                <div class="col-lg-2 col-md-8 col-sm-11 col-xs-11">
+                    Username
+                </div>
+                <div class="col-lg-5 visible-lg">
+                    Password
+                </div>
+                <div class="col-lg-2 visible-lg">
+                    Role
+                </div>
+                <div class="col-lg-2 visible-lg">
+                    Created Date
+                </div>
+            </div>
+        </li>
+
+        <li class="list-group-item" ng-repeat="user in model.users">
+            <div class="row">
+                <div class="col-lg-2 col-md-8 col-sm-11 col-xs-11">
+                    {{user.username}}
+                </div>
+                <div class="col-lg-5 visible-lg">
+                    {{user.password}}
+                </div>
+                <div class="col-lg-2 visible-lg">
+                    {{user.role}}
+                </div>
+                <div class="col-md-2 visible-lg">
+                    {{user.dateCreated}}
+                </div>
+                <div class="admin-edit-Tool"
+                <a href="../website/website-edit.html">
+                    <span class="glyphicon glyphicon-cog pull-right"></span>
+                </a>
+
+            </div>
+        </li>
+    </ul>
+</div>
