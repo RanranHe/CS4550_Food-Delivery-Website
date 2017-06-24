@@ -30,6 +30,15 @@
            ng-model="zip"
            class="form-control"/>
 
+    <div>
+        <label for="url">URL</label>
+        <input type="url"
+               class="form-control"
+               id="url"
+               placeholder="Image URL"
+               ng-model="model.restaurant.url">
+    </div>
+
     <a ng-click="model.createRestaurant(name, address, city, state, zip)"
        class="btn btn-block btn-primary">Submit</a>
     <a href="#!/account" class="btn btn-block btn-success">Cancel</a>

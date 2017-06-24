@@ -26,7 +26,7 @@ module.exports = function () {
             .then(function (order) {
                 var userId = order._user;
                 var orderId = order._id;
-                userModel.addOrderToArray(userId, orderId);
+                userModel.addOrderToOrderArray(userId, orderId);
             })
     }
 

@@ -14,11 +14,7 @@
 
         function createRestaurant(userId, restaurant) {
             var url = "/api/project/user/" + userId + "/restaurant";
-            var data = {
-                userId: userId,
-                restaurant: restaurant
-            };
-            return $http.post(url, data)
+            return $http.post(url, restaurant)
         }
 
         function findRestaurantById(restaurantId) {

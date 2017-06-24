@@ -44,7 +44,7 @@
             return $http.put(url, data);
         }
 
-        function deleteReview(reviewid) {
+        function deleteReview(reviewId) {
             var url = "/api/project/review/" + reviewId;
             return $http
                 .delete(url);

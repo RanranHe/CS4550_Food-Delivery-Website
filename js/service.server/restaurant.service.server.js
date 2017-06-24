@@ -1,10 +1,11 @@
 module.exports = function (app, models) {
     var restaurantModel = models.restaurantModel;
 
-    app.post("/api/project/user/:userId/restaurant", createRestaurant);
 
-    app.get("/api/project/review/", findReviewByRestaurant);
-    app.get("/api/project/review/:reviewId", findReviewById);
+    app.post("/api/project/user/:userId/restaurant", createRestaurant);
+    app.get("/api/project/restaurant/:restaurantId", findRestaurantById);
+    app.get("/api/project/user/:userId/restaurant", findRestaurantByUserId);
+
     app.put("/api/project/review/:reviewId", updateReview);
     app.delete('/api/review/:reviewId', deleteReview);
 
@@ -22,31 +23,48 @@ module.exports = function (app, models) {
                 });
     }
 
-    function findReviewByRestaurant(req, res) {
-        var restaurantName = req.query['restaurant'];
+    function findRestaurantById(req, res) {
+        var restaurantId = req.params.restaurantId;
 
-        reviewModel
-            .findReviewByRestaurant(restaurantName)
-            .then(function (review) {
-                res.json(review);
+        restaurantModel
+            .findRestaurantById(restaurantId)
+            .then(function (restaurant) {
+                res.json(restaurant);
             }, function (err) {
                 res.send(null);
             });
     }
 
-    function findReviewById(req, res) {
-        var reviewId = req.params.reviewId;
-        reviewModel
-            .findReviewById(reviewId)
-            .then(
-                function (review) {
-                    res.json(review);
-                },
-                function (err) {
-                    res.send(null);
-                    // res.status(400).send(err);
-                }
-            );
+    function findRestaurantByUserId(req, res) {
+        var userId = req.params['userId'];
+
+        restaurantModel
+            .findRestaurantByUserId(userId)
+            .then(function (restaurantIds) {
+                restaurantModel
+                    .findRestaurantsByIds(restaurantIds)
+                    .then(function (restaurants) {
+                        var finalHashWidgetList = getHashedList(restaurants);
+                        // Helper function
+                        function getHashedList(restaurants) {
+                            var hashRestaurantList = [];
+                            for (var i in restaurants) {
+                                hashRestaurantList[restaurants[i]._id] = restaurants[i];
+                            }
+                            return hashRestaurantList;
+                        }
+
+                        var restaurantList = [];
+
+                        for (var i = 0; i < restaurantIds.length; i++) {
+                            var restaurantId = restaurantIds[i];
+                            var restaurant = finalHashWidgetList[restaurantId];
+                            restaurantList.push(restaurant);
+                        }
+                        console.log("service: " + restaurantList)
+                        res.json(restaurantList);
+                    })
+            });
     }
 
     function updateReview(req, res) {
@@ -71,4 +89,5 @@ module.exports = function (app, models) {
                     res.status(404).send(err);
                 });
     }
+
 };

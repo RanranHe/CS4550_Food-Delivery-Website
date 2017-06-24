@@ -21,8 +21,8 @@
                 controllerAs: "model"
             })
             .when("/account", {
-                templateUrl: "../views/foodlist/template/list.view.client.html",
-                controller: "ListController",
+                templateUrl: "../views/foodlist/template/list-manager.view.client.html",
+                controller: "ManagerAccountController",
                 controllerAs: "model",
                 resolve: {
                     currentUser: checkLoggedIn
@@ -33,7 +33,8 @@
                 controller: "NewRestaurantController",
                 controllerAs: "model",
                 resolve: {
-                    currentUser: checkLoggedIn
+                    currentUser: checkLoggedIn,
+                    currentRestaurant:checkRestaurant
                 }
             })
             .when("/profile", {
@@ -88,4 +89,22 @@
             });
         return deferred.promise;
     }
+
+    function checkRestaurant($q, $location, RestaurantService) {
+        var deferred = $q.defer();
+        console.log("deferred" + deferred)
+        RestaurantService
+            .checkRestaurant()
+            .then(function (currentRestaurant) {
+                console.log("config currentRestaurant " + currentRestaurant)
+                if (currentRestaurant === '0') {
+                    deferred.reject();
+                    $location.url('/login');
+                } else {
+                    deferred.resolve(currentRestaurant);
+                }
+            });
+        return deferred.promise;
+    }
+
 })();

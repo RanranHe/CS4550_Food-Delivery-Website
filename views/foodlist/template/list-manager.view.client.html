@@ -18,175 +18,191 @@
             </div>
             <!-- /.row -->
 
+            <a href="#!/restaurantNew">
+                <span class="glyphicon glyphicon-plus pull-right"></span>
+            </a>
             <!-- Projects Row -->
             <div class="row">
-                <div class="col-sm-4 portfolio-item">
+                <div class="col-sm-4 portfolio-item" ng-repeat="restaurant in model.restaurants">
+                    <img ng-src="{{restaurant.url}}">
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                     <h5>
                         <a href="#!/restaurantNew">
-                            <span class="glyphicon glyphicon-plus pull-right"></span>
+                            <span class="glyphicon glyphicon-remove pull-right"></span>
                         </a>
-                        <a href="" data-toggle="collapse" data-target="#detail1">餐厅名字(可以点）</a>
-                        <div id="detail1" class="collapse">
-                            Type:
-                            Rate:
-                            Dollars:
-                            Address:
+                        <a ng-click="model.deleteRestaurant()">
+                            <span class="glyphicon glyphicon-pencil pull-right editRestaurant"></span>
+                        </a>
+                        <a href="" data-toggle="collapse" data-target="#{{restaurant._id}}">{{restaurant.name}}</a>
+                        <div id="{{restaurant._id}}" class="collapse">
+                            Address: {{restaurant.address}}, {{restaurant.city}}, {{restaurant.state}}
+                            {{restaurant.zip}}
+                            <br>
                             Review:
                         </div>
                     </h5>
                 </div>
+
+                <div class="col-sm-4 portfolio-item">
+                    <a style="border: #333333; border-style: dashed; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px"
+                       href="#!/restaurantNew">
+                        <img class="img-responsive" src="http://placekitten.com/700/400">
+                        <span class="glyphicon glyphicon-plus put-middle"></span>
+                    </a>
+                </div>
+
+
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail2">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail2" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail2">餐厅名字(可以点）</div>-->
+                <!--<div id="detail2" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
+                <!--</div>-->
+                <!--</h5>-->
                 <!--</div>-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail3">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail3" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail3">餐厅名字(可以点）</div>-->
+                <!--<div id="detail3" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
+                <!--</div>-->
+                <!--</h5>-->
                 <!--</div>-->
                 <!--&lt;!&ndash; /.row &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; Projects Row &ndash;&gt;-->
-            <!--<div class="row">-->
+                <!--</div>-->
+                <!--&lt;!&ndash; Projects Row &ndash;&gt;-->
+                <!--<div class="row">-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail4">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail4" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail4">餐厅名字(可以点）</div>-->
+                <!--<div id="detail4" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
+                <!--</div>-->
+                <!--</h5>-->
                 <!--</div>-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail5">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail5" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail5">餐厅名字(可以点）</div>-->
+                <!--<div id="detail5" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
+                <!--</div>-->
+                <!--</h5>-->
                 <!--</div>-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail6">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail6" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail6">餐厅名字(可以点）</div>-->
+                <!--<div id="detail6" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
                 <!--</div>-->
-            <!--</div>-->
+                <!--</h5>-->
+                <!--</div>-->
+                <!--</div>-->
 
-            <!--&lt;!&ndash; Projects Row &ndash;&gt;-->
-            <!--<div class="row">-->
+                <!--&lt;!&ndash; Projects Row &ndash;&gt;-->
+                <!--<div class="row">-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail7">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail7" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail7">餐厅名字(可以点）</div>-->
+                <!--<div id="detail7" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
+                <!--</div>-->
+                <!--</h5>-->
                 <!--</div>-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail8">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail8" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail8">餐厅名字(可以点）</div>-->
+                <!--<div id="detail8" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
+                <!--</div>-->
+                <!--</h5>-->
                 <!--</div>-->
                 <!--<div class="col-sm-4 portfolio-item">-->
-                    <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
-                    <!--<h5>-->
-                        <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
-                        <!--<div data-toggle="collapse" data-target="#detail9">餐厅名字(可以点）</div>-->
-                        <!--<div id="detail9" class="collapse">-->
-                            <!--Type:-->
-                            <!--Rate:-->
-                            <!--Dollars:-->
-                            <!--Address:-->
-                            <!--Review:-->
-                        <!--</div>-->
-                    <!--</h5>-->
+                <!--<img class="img-responsive" src="http://placehold.it/700x400" alt="">-->
+                <!--<h5>-->
+                <!--<span class="glyphicon glyphicon-plus pull-right"></span>-->
+                <!--<div data-toggle="collapse" data-target="#detail9">餐厅名字(可以点）</div>-->
+                <!--<div id="detail9" class="collapse">-->
+                <!--Type:-->
+                <!--Rate:-->
+                <!--Dollars:-->
+                <!--Address:-->
+                <!--Review:-->
                 <!--</div>-->
-            <!--</div>-->
-            <!--&lt;!&ndash; /.row &ndash;&gt;-->
+                <!--</h5>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.row &ndash;&gt;-->
 
-            <!--<hr>-->
+                <!--<hr>-->
 
-            <!--&lt;!&ndash; Pagination &ndash;&gt;-->
-            <!--<div class="row text-center">-->
+                <!--&lt;!&ndash; Pagination &ndash;&gt;-->
+                <!--<div class="row text-center">-->
                 <!--<div class="col-lg-12">-->
-                    <!--<ul class="pagination">-->
-                        <!--<li>-->
-                            <!--<a href="#">&laquo;</a>-->
-                        <!--</li>-->
-                        <!--<li class="active">-->
-                            <!--<a href="#">1</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">2</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">3</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">4</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">5</a>-->
-                        <!--</li>-->
-                        <!--<li>-->
-                            <!--<a href="#">&raquo;</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
+                <!--<ul class="pagination">-->
+                <!--<li>-->
+                <!--<a href="#">&laquo;</a>-->
+                <!--</li>-->
+                <!--<li class="active">-->
+                <!--<a href="#">1</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a href="#">2</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a href="#">3</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a href="#">4</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a href="#">5</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<a href="#">&raquo;</a>-->
+                <!--</li>-->
+                <!--</ul>-->
                 <!--</div>-->
             </div>
         </div>

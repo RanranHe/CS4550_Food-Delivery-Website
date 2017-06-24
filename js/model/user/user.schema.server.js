@@ -21,7 +21,7 @@ var userSchema = mongoose.Schema({
     orders: [{type: mongoose.Schema.Types.ObjectId, ref: 'orders'}],
     // For managers
     income: Number,
-    restaurants: [String],
+    restaurants: [{type: mongoose.Schema.Types.ObjectId, ref: 'restaurants'}],
     // For DeliveryMan
     status: {type: String, enum:['FREE', 'BUSY']},
     reviews: [String]

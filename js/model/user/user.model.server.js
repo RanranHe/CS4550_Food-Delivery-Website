@@ -16,7 +16,8 @@ module.exports = function () {
     userModel.findUserByFacebookId = findUserByFacebookId;
     userModel.findUserByGoogleId = findUserByGoogleId;
     //////////Helper Function ////////////////
-    userModel.addOrderToArray = addOrderToArray;
+    userModel.addOrderToOrderArray = addOrderToOrderArray;
+    userModel.addOrderToRestaurantArray = addOrderToRestaurantArray;
 
     module.exports = userModel;
 
@@ -30,7 +31,8 @@ module.exports = function () {
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId: findUserByGoogleId,
         /////////Helper///////////////
-        addOrderToArray: addOrderToArray
+        addOrderToOrderArray: addOrderToOrderArray,
+        addOrderToRestaurantArray: addOrderToRestaurantArray
     };
 
 
@@ -70,11 +72,19 @@ module.exports = function () {
     }
 
     //////////////////Helper Functions////////////////////
-    function addOrderToArray(userId, orderId) {
+    function addOrderToOrderArray(userId, orderId) {
         return userModel
             .findUserById(userId)
             .then(function (user) {
                 user.orders.push(orderId);
+                return user.save();
+            })
+    }
+
+    function addOrderToRestaurantArray(userId, restaurantId) {
+        return userModel.findUserById(userId)
+            .then(function (user) {
+                user.restaurants.push(restaurantId);
                 return user.save();
             })
     }

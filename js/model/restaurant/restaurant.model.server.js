@@ -6,43 +6,58 @@ module.exports = function () {
     var userModel = require('../user/user.model.server');
 
     restaurantModel.createRestaurant = createRestaurant;
-
-    // orderModel.updateOrder = updateOrder;
-    // orderModel.findOrdersByUserId = findOrdersByUserId;
-    // orderModel.findOrderById = findOrderById;
+    restaurantModel.findRestaurantById = findRestaurantById;
+    restaurantModel.findRestaurantByUserId = findRestaurantByUserId;
+    // Helper
+    restaurantModel.findRestaurantsByIds = findRestaurantsByIds;
 
     module.exports = restaurantModel;
 
     return {
         createRestaurant: createRestaurant,
-
-        updateOrder: updateOrder,
-        findOrdersByUserId: findOrdersByUserId,
-        findOrderById: findOrderById
+        findRestaurantById: findRestaurantById,
+        findRestaurantByUserId: findRestaurantByUserId,
+        //Helper
+        findRestaurantsByIds: findRestaurantsByIds
     };
 
     function createRestaurant(userId, restaurant) {
         restaurant._user = userId;
-        return restaurantModel
-            .collection.insert(restaurant)
-            // .then(function (restaurant) {
-            //     var userId = restaurant._user;
-            //     var restaurantId = restaurant._id;
-            //     userModel.addOrderToRestaurantArray(userId, restaurantId);
-            // })
-    }
 
+        console.log("name: " + restaurant.name)
+        return restaurantModel
+            .create(restaurant)
+            .then(function (newRestaurant) {
+                var restaurantId = newRestaurant._id;
+                userModel.addOrderToRestaurantArray(userId, restaurantId);
+            })
+    }
+    function findRestaurantById(restaurantId) {
+        return restaurantModel.findOne({_id: restaurantId});
+    }
+    // function findRestaurantByUserId(userId) {
+    //     return restaurantModel.find({_user: userId});
+    // }
+    function findRestaurantByUserId(userId) {
+
+        return userModel.findUserById(userId)
+            .then(function (user) {
+                console.log("model: " + user._id)
+                console.log("model: " + user.restaurants)
+                return user.restaurants;
+            })
+    }
     function updateOrder(orderId, order) {
         return orderModel.update(
             {_id: orderId},
             {$set: order});
     }
 
-    function findOrdersByUserId(userId) {
-        return orderModel.find({_user: userId});
+    // Helper
+    function findRestaurantsByIds(restaurantIds){
+        return restaurantModel.find(
+            {_id: {$in: restaurantIds}}
+        )
     }
 
-    function findOrderById(orderId) {
-        return orderModel.findOne({_id: orderId});
-    }
 };
