@@ -1,31 +1,58 @@
 <div class="container">
     <h2>{{model.restaurantName}}</h2>
-
-    <div ng-repeat="dishType in model.dishTypes">
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <div data-toggle="collapse" data-target="#{{dishType.apiKey}}">{{dishType.name}}</div>
-                    </h4>
-                </div>
-                <div id="{{dishType.apiKey}}" class="panel-collapse collapse">
-                    <ul class="list-group">
-                        <div ng-repeat="item in dishType.items">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-xs-4">{{item.name}}</div>
-                                    <div class="col-xs-6">{{"$" + item.basePrice}}</div>
-                                    <div class="col-xs-2">
-                                        <span class="label label-default"><a ng-click="model.addToCart(item.name, item.basePrice)" style="color: white">Add to cart</a></span>
+    <div ng-show="!model.isLocal">
+        <div ng-repeat="dishType in model.dishTypesApi">
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <div data-toggle="collapse" data-target="#{{dishType.apiKey}}">{{dishType.name}}</div>
+                        </h4>
+                    </div>
+                    <div id="{{dishType.apiKey}}" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <div ng-repeat="item in dishType.items">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-xs-4">{{item.name}}</div>
+                                        <div class="col-xs-6">{{"$" + item.basePrice}}</div>
+                                        <div class="col-xs-2">
+                                            <span class="label label-default"><a
+                                                    ng-click="model.addToCart(item.name, item.basePrice)"
+                                                    style="color: white">Add to cart</a></span>
+                                        </div>
                                     </div>
-                                </div>
-                            </li>
-                        </div>
-                    </ul>
+                                </li>
+                            </div>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div ng-show="model.isLocal">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <ul class="list-group">
+                    <div ng-repeat="dish in model.dishTypesLocal">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-xs-4">{{dish.name}}</div>
+                                <div class="col-xs-6">{{"$" + dish.price}}</div>
+                                <div class="col-xs-2">
+                                    <span class="label label-default"><a
+                                            ng-click="model.addToCart(dish.name, dish.price)" style="color: white">Add
+                                        to cart</a></span>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </div>

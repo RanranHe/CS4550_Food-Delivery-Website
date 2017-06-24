@@ -1,13 +1,36 @@
-<div class="list">
+<div class="list orderPanel">
     <div class="row">
-        <div class="col-sm-2">
-            <p class="lead">Filters</p>
-            <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+        <div class="col-sm-10">
+            <!-- Page Header -->
+            <div ng-show="model.isManager">
+                <div class="grow">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">My Restaurants
+                        </h1>
+                    </div>
+                </div>
+                <div ng-repeat="restaurant in model.restaurants" style="margin-top: 30px">
+                    <div class="media-left">
+                        <img class="media-object" src="{{restaurant.url}}" width="300px" height="250px"/>
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">
+                            <a href="#!/menu?key={{restaurant._id}}&restaurantName={{restaurant.name}}&isLocal=true"><b>{{restaurant.name}}</b></a>
+                        </h3>
+                        <ul class="list-group">
+                            <li class="list-group-item"><b>Food Type:</b> {{restaurant.foodType}}</li>
+                            <li class="list-group-item"><b>Phone:</b> {{restaurant.phone}}</li>
+                            <li class="list-group-item"><b>Address:</b> {{restaurant.address + ", " +
+                                restaurant.city + ", " + restaurant.state + ", " + restaurant.zip}}
+                            </li>
+                            <li class="list-group-item"><b>Review:</b> {{restaurant.reviews}}</li>
+                        </ul>
+                    </div>
+                    <hr />
+                </div>
             </div>
-        </div>
+
+
         <div class="col-sm-10">
             <!-- Page Header -->
             <div class="grow">
@@ -16,16 +39,14 @@
                     </h1>
                 </div>
             </div>
-            <!-- /.row -->
 
-            <!-- Projects Row -->
             <div ng-repeat="business in model.businesses">
                 <div class="media-left">
                     <img class="media-object" src="{{business.logoUrl}}" width="300px" height="250px"/>
                 </div>
                 <div class="media-body">
                     <h3 class="media-heading">
-                        <a href="#!/menu?apikey={{business.apiKey}}&restaurantName={{business.name}}"><b>{{business.name}}</b></a>
+                        <a href="#!/menu?apikey={{business.apiKey}}&restaurantName={{business.name}}&isLocal=false"><b>{{business.name}}</b></a>
                     </h3>
                     <ul class="list-group">
                         <li class="list-group-item"><b>Food Type:</b> {{business.foodTypes[0] + ", " + business.foodTypes[1]}}</li>

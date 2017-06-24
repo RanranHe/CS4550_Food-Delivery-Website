@@ -1,55 +1,58 @@
-<div class="container-fluid">
-    <h1>New Restaurant</h1>
+<div class="orderPanel">
+    <div class="container-fluid">
+        <h1>New Restaurant</h1>
 
-    <label for="name">Name</label>
-    <input id="name"
-           ng-model="name"
-           class="form-control"/>
+        <label for="name">Name</label>
+        <input id="name"
+               ng-model="name"
+               class="form-control"/>
 
-    <label for="name">FoodType</label>
-    <input id="foodtype"
-           ng-model="foodtype"
-           class="form-control"/>
+        <label for="name">FoodType</label>
+        <input id="foodtype"
+               ng-model="foodtype"
+               class="form-control"/>
 
-    <label for="name">Phone</label>
-    <input id="phone"
-           ng-model="phone"
-           class="form-control"/>
+        <label for="name">Phone</label>
+        <input id="phone"
+               ng-model="phone"
+               class="form-control"/>
 
-    <label for="address">Address</label>
-    <input id="address"
-           type="text"
-           ng-model="address"
-           class="form-control"/>
+        <label for="address">Address</label>
+        <input id="address"
+               type="text"
+               ng-model="address"
+               class="form-control"/>
 
-    <label for="city">City</label>
-    <input id="city"
-           type="text"
-           ng-model="city"
-           class="form-control"/>
+        <label for="city">City</label>
+        <input id="city"
+               type="text"
+               ng-model="city"
+               class="form-control"/>
 
-    <label for="state">State</label>
-    <input id="state"
-           type="text"
-           ng-model="state"
-           class="form-control"/>
+        <label for="state">State</label>
+        <input id="state"
+               type="text"
+               ng-model="state"
+               class="form-control"/>
 
-    <label for="zip">Zip</label>
-    <input id="zip"
-           type="text"
-           ng-model="zip"
-           class="form-control"/>
+        <label for="zip">Zip</label>
+        <input id="zip"
+               type="text"
+               ng-model="zip"
+               class="form-control"/>
 
-    <div>
-        <label for="url">URL</label>
-        <input type="url"
-               class="form-control"
-               id="url"
-               placeholder="Image URL"
-               ng-model="url">
+        <div>
+            <label for="url">URL</label>
+            <input type="url"
+                   class="form-control"
+                   id="url"
+                   placeholder="Image URL"
+                   ng-model="url">
+        </div>
+
+        <a ng-click="model.createRestaurant(name, address, city, state, zip, foodtype, phone, url)"
+           class="btn btn-block btn-primary">Submit</a>
+        <a href="#!/account" class="btn btn-block btn-success">Cancel</a>
     </div>
 
-    <a ng-click="model.createRestaurant(name, address, city, state, zip, foodtype, phone, url)"
-       class="btn btn-block btn-primary">Submit</a>
-    <a href="#!/account" class="btn btn-block btn-success">Cancel</a>
 </div>
