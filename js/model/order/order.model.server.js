@@ -8,6 +8,7 @@ module.exports = function () {
     orderModel.createOrder = createOrder;
     orderModel.updateOrder = updateOrder;
     orderModel.findOrdersByUserId = findOrdersByUserId;
+    orderModel.findOrdersByDeliveryManId = findOrdersByDeliveryManId;
     orderModel.findOrderById = findOrderById;
 
     module.exports = orderModel;
@@ -16,6 +17,7 @@ module.exports = function () {
         createOrder: createOrder,
         updateOrder: updateOrder,
         findOrdersByUserId: findOrdersByUserId,
+        findOrdersByDeliveryManId: findOrdersByDeliveryManId,
         findOrderById: findOrderById
     };
 
@@ -38,6 +40,10 @@ module.exports = function () {
 
     function findOrdersByUserId(userId) {
         return orderModel.find({_user: userId});
+    }
+
+    function findOrdersByDeliveryManId(deliveryManId) {
+        return orderModel.find({_deliveryMan: deliveryManId});
     }
 
     function findOrderById(orderId) {

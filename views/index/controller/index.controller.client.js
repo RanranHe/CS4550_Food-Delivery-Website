@@ -6,6 +6,7 @@
         var model = this;
         $scope.isLoggedIn = false;
         $scope.isManager = false;
+        $scope.isDeliveryMan = false;
 
 
         function init() {
@@ -16,6 +17,9 @@
                         $scope.isLoggedIn = true;
                         if (response.role === "MANAGER") {
                             $scope.isManager = true;
+                        }
+                        if (response.role === "DELIVERYMAN") {
+                            $scope.isDeliveryMan = true;
                         }
                     }
                 }

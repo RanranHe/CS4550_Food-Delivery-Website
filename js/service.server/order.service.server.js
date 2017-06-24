@@ -3,6 +3,7 @@ module.exports = function (app, models) {
 
     app.post("/api/project/user/:userId/order", createOrder);
     app.get("/api/project/user/:userId/order", findOrdersByUserId);
+    app.get("/api/project/deliveryMan/:deliveryManId/order",findOrdersByDeliveryManId);
     app.get("/api/project/order/:orderId", findOrderById);
     // Do Edit-Order and Cancel-Order Here
     app.put("/api/project/order/:orderId", updateOrder);
@@ -30,6 +31,14 @@ module.exports = function (app, models) {
             });
     }
 
+    function findOrdersByDeliveryManId(req, res) {
+        orderModel
+            .findOrdersByDeliveryManId(req.params.deliveryManId)
+            .then(function (orders) {
+                res.json(orders);
+            });
+    }
+
     function findOrderById(req, res) {
         var orderId = req.params.orderId;
         orderModel
@@ -45,8 +54,8 @@ module.exports = function (app, models) {
     }
 
     function updateOrder(req, res) {
-        var orderId = req.params.orderId;
-        var order = req.body.order;
+        var orderId = req.params['orderId'];
+        var order = req.body;
 
         orderModel
             .updateOrder(orderId, order)

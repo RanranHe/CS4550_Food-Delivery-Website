@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
 var orderSchema = mongoose.Schema({
-    _user: String,
+    _deliveryMan:{type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+    _user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
     address: String,
     foods: [String],
     creditCard: Number,

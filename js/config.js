@@ -28,6 +28,14 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when("/delivery", {
+                templateUrl: "../views/order/template/order-list-delivery.view.client.html",
+                controller: "OrderListDeliveryController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when("/restaurantNew", {
                 templateUrl: "../views/restaurant/template/new.view.client.html",
                 controller: "NewRestaurantController",
