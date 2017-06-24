@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var reviewSchema = mongoose.Schema({
-    _user: {type: mongoose.Schema.Types.ObjectId, ref: 'users'},
+    _user: String,
     restaurant: String,
     rate: {type: String, enum:['BAD', 'POOR','AVERAGE', 'GOOD', 'EXCELLENT']},
     text: String,

@@ -12,13 +12,9 @@
             "deleteReview": deleteReview
         };
 
-        function createReview(userId, review) {
-            var url = "/api/project/user/" + userId + "/review";
-            var data = {
-                userId: userId,
-                review: review
-            };
-            return $http.post(url, data)
+        function createReview(review) {
+            var url = "/api/project/review";
+            return $http.post(url, review)
         }
 
         function findReviewByRestaurant(restaurant) {
@@ -50,4 +46,4 @@
                 .delete(url);
         }
     }
-});
+})();

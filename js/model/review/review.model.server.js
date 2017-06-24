@@ -21,9 +21,8 @@ module.exports = function () {
     };
 
 
-    function createReview(userId, order) {
-        order._user = userId;
-        return reviewModel.collection.insert(order);
+    function createReview(newReview) {
+        return reviewModel.collection.insert(newReview);
     }
 
     function findReviewByRestaurant(restaurant) {

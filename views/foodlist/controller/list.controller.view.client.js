@@ -2,7 +2,7 @@
     angular.module("RollingFood")
         .controller("ListController", ListController);
 
-    function ListController(YelpService, RestaurantService, $routeParams, currentUser) {
+    function ListController(YelpService, RestaurantService, ReviewService, $routeParams, currentUser) {
         var model = this;
         model.getListTemplate = getListTemplate;
         model.user = currentUser;
@@ -15,10 +15,11 @@
             }
             RestaurantService
                 .findRestaurantByUserId(currentUser._id)
-                .then(function(restaurants) {
+                .then(function (restaurants) {
                     model.restaurants = restaurants;
                 });
         }
+
         init();
 
         function getListTemplate(role) {
@@ -34,6 +35,34 @@
                 }
             );
         }
+
         findFoodByLocation($routeParams.keyword);
+
+        model.submitReview = submitReview;
+
+        function submitReview(restaurantKey, reviewText) {
+            if (currentUser === "0") {
+                model.error = "Please login to proceed!";
+            } else {
+                var newReview = {
+                    _user: currentUser.username,
+                    restaurant: restaurantKey,
+                    text: reviewText
+                };
+                ReviewService.createReview(newReview);
+                model.reviews.push(newReview)
+            }
+
+        }
+
+        model.fetchReview = fetchReview;
+
+        function fetchReview(restaurantKey) {
+            ReviewService.findReviewByRestaurant(restaurantKey).then(
+                function (reviews) {
+                    model.reviews = reviews;
+                }
+            )
+        }
     }
 })();

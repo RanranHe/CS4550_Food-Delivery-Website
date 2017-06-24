@@ -1,18 +1,16 @@
 module.exports = function (app, models) {
     var reviewModel = models.reviewModel;
 
-    app.post("/api/project/user/:userId/review", createReview);
-    app.get("/api/project/review/", findReviewByRestaurant);
+    app.post("/api/project/review", createReview);
+    app.get("/api/project/review/restaurant", findReviewByRestaurant);
     app.get("/api/project/review/:reviewId", findReviewById);
     app.put("/api/project/review/:reviewId", updateReview);
     app.delete('/api/project/review/:reviewId', deleteReview);
 
     function createReview(req, res) {
-        var userId = req.params.userId;
         var review = req.body;
-
         reviewModel
-            .createReview(userId, review)
+            .createReview(review)
             .then(
                 function (review) {
                     res.sendStatus(200);
@@ -23,7 +21,6 @@ module.exports = function (app, models) {
 
     function findReviewByRestaurant(req, res) {
         var restaurantName = req.query['restaurant'];
-
         reviewModel
             .findReviewByRestaurant(restaurantName)
             .then(function (review) {

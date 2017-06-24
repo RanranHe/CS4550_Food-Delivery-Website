@@ -10,8 +10,7 @@ var restaurantSchema = mongoose.Schema({
     state: String,
     phone: String,
     zip: String,
-    url: String,
-    reviews: [{type: mongoose.Schema.Types.ObjectId, ref: 'reviews'}]
+    url: String
 }, {collection: "RollingFoodDelivery.restaurants"});
 
 module.exports = restaurantSchema;
