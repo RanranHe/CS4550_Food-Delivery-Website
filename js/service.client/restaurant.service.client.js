@@ -49,4 +49,4 @@
             return $http.delete(url);
         }
     }
-});
+})();

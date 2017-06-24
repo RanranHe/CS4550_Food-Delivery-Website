@@ -9,7 +9,6 @@
         model.createRestaurant = createRestaurant;
 
         function createRestaurant(name, address, city, state, zip) {
-            console.log("Here");
             var newRestaurant = {
                 name: name,
                 address: address,
@@ -21,4 +20,4 @@
             RestaurantService.createRestaurant(userId, newRestaurant);
         }
     }
-});
+})();
