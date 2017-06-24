@@ -6,6 +6,7 @@
         return {
             "createOrder": createOrder,
             "findOrdersByUserId": findOrdersByUserId,
+            "findOrdersByDeliveryManId": findOrdersByDeliveryManId,
             "findOrderById": findOrderById,
             "updateOrder": updateOrder
         };
@@ -24,8 +25,15 @@
             return $http.get(url).then(
                 function (orders) {
                     return orders;
-                }
-            )
+                })
+        }
+
+        function findOrdersByDeliveryManId(deliveryManId) {
+            var url = "/api/project/deliveryMan/" + deliveryManId + "/order";
+            return $http.get(url).then(
+                function (orders) {
+                    return orders;
+                })
         }
 
         function findOrderById(orderId) {
