@@ -20,6 +20,10 @@
                             $scope.isManager = true;
                             return;
                         }
+                        if (response.role === "USER") {
+                            $scope.isCustomer = true;
+                            return;
+                        }
                         if (response.role === "DELIVERYMAN") {
                             $scope.isDeliveryMan = true;
                             return;
