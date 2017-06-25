@@ -26,7 +26,7 @@
             checkArray[2] = password2Check;
             checkArray[3] = roleCheck;
 
-            if(usernameCheck || password1Check || password2Check || roleCheck) {
+            if (usernameCheck || password1Check || password2Check || roleCheck) {
                 $location.url("/register");
                 var results = new Array(4);
                 for (var i in checkArray) {
@@ -57,17 +57,27 @@
                     if (found !== null) {
                         model.error = "Username is not available";
                     } else {
-                        var user = {
-                            username: username,
-                            password: password,
-                            role: role
-                        };
-                        UserService
-                            .register(user)
-                            .then(function (user) {
-                                $location.url('/profile');
-                            });
+                        if (role === "DELIVERYMAN") {
+                            var user = {
+                                username: username,
+                                password: password,
+                                role: role,
+                                status: 'FREE'
+                            };
+                        } else {
+                            var user = {
+                                username: username,
+                                password: password,
+                                role: role
+                            };
+                        }
                     }
+                    UserService
+                        .register(user)
+                        .then(function (user) {
+                            $location.url('/profile');
+                            location.reload();
+                        });
                 })
         }
     }

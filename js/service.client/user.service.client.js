@@ -13,7 +13,8 @@
             "updateUser": updateUser,
             "deleteUser": deleteUser,
             "logout": logout,
-            "searchUsers": searchUsers
+            "searchUsers": searchUsers,
+            "findFreeDeliveryMan": findFreeDeliveryMan
         };
 
         //////////////// Register ///////////////
@@ -82,6 +83,10 @@
 
         function searchUsers(searchText) {
             return $http.get("/api/project/search?searchText="+searchText);
+        }
+
+        function findFreeDeliveryMan() {
+            return $http.get("/api/project/deliveryMan/free");
         }
     }
 })();

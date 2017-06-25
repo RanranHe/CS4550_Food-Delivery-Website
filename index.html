@@ -38,6 +38,8 @@
     <script src="views/restaurant/controller/new.controller.client.js"></script>
     <script src="views/order/controller/order.controller.client.js"></script>
     <script src="views/order/controller/order-list-delivery.controller.client.js"></script>
+    <script src="views/order/controller/order-list-manager.controller.client.js"></script>
+    <script src="views/order/controller/order-assign-manager.controller.client.js"></script>
     <script src="views/index/controller/index.controller.client.js"></script>
     <script src="views/foodlist/controller/menu.controller.view.client.js"></script>
 
@@ -58,14 +60,14 @@
             </a>
             <li><a onclick="window.history.back()" class="btn btn-info" style="height: 5px">Back</a></li>
         </ul>
-        <div ng-show="!isLoggedIn">
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="medium">
+        <div >
+            <ul class="nav navbar-top-links navbar-right" ng-show="!isLoggedIn">
+                <li class="medium" >
                     <a href="#!/login">
                         Login
                     </a>
                 </li>
-                <li class="medium">
+                <li class="medium pull-left">
                     <a href="#!/register">
                         Register
                     </a>
@@ -82,11 +84,6 @@
                             <span class="glyphicon glyphicon-user"></span> {{username}}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="width: 200px">
-                            <a href="#!/account" class="dropdown-item bigFont" ng-show="isManager">
-                                <span class="glyphicon glyphicon-pencil"></span> Management</a>
-                            <a href="#!/delivery" class="dropdown-item bigFont" ng-show="isDeliveryMan">
-                                <span class="glyphicon glyphicon-pencil"></span> Deliverys</a>
-                            <br>
                             <a href="#!/profile" class="dropdown-item bigFont">
                                 <span class="glyphicon glyphicon-pencil"></span> Profile</a>
                             <br>
@@ -95,12 +92,27 @@
                         </div>
                     </div>
                 </li>
-                <li class="medium">
+                <li class="medium" ng-show="isCustomer || hasRole">
                     <a href="#!/orderList">
                         My Order
                     </a>
                 </li>
-                <li class="medium">
+                <li class="medium" ng-show="isManager">
+                    <a href="#!/manager">
+                        Order Management
+                    </a>
+                </li>
+                <li class="medium" ng-show="isManager">
+                    <a href="#!/account">
+                        My Restaurants
+                    </a>
+                </li>
+                <li class="medium" ng-show="isDeliveryMan">
+                    <a href="#!/delivery">
+                        My Deliveries
+                    </a>
+                </li>
+                <li class="medium" ng-show="isCustomer || hasRole">
                     <div class="dropdown show">
                         <a id="cartLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="glyphicon glyphicon-shopping-cart"></span>

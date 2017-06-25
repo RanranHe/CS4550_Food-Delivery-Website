@@ -1,107 +1,47 @@
 <section class="row profileinmiddle">
     <div class="list-group-item">
-        <h5 class="header">My Restaurants</h5>
+        <h5 class="header">All Orders</h5>
     </div>
 
-    <div class="list-group-item">
-        <!--restaurant header-->
+    <div class="list-group-item" ng-repeat="order in model.orders">
         <div class="row">
-            <div class="col-xs-4">
-                <div data-toggle="collapse" data-target="#collapse3">Restaurant1</div>
+            <div class="col-xs-7">
+                <div data-toggle="collapse" data-target="#{{order._id}}">{{order.date}}</div>
             </div>
-            <div class="col-xs-3 hidden-xs">status</div>
-            <div class="col-xs-3 pull-right">
-                <button onclick="model.popUp()" class="pull-right">Delete</button>
-            </div>
+            <div class="col-xs-4">Status: {{order.status}}</div>
         </div>
-        <!-- retaurant body-->
-        <div id="collapse3" class="collapse">
+        <div id="{{order._id}}" class="panel-collapse collapse">
             <br>
-            <!--First order-->
-            <div class="order">
-                <div class="row">
-                    <div class="col-xs-4" data-toggle="collapse" data-target="#detail">Order1</div>
-                    <div class="col-xs-3 hidden-xs">status</div>
-                    <div class="col-xs-3 pull-right">
-                        <button ngclick="model.editOrder()" class="pull-right">Edit</button>
-                    </div>
-                </div>
-                <ul id="detail" class="collapse">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">First item</div>
-                            <div class="col-xs-3 hidden-xs">3</div>
-                            <div class="col-xs-3 pull-right">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">Second item</div>
-                            <div class="col-xs-3 hidden-xs">3</div>
-                            <div class="col-xs-3 pull-right">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">Third item</div>
-                            <div class="col-xs-3 hidden-xs">3</div>
-                            <div class="col-xs-3 pull-right">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            <div class="row">
+                <div class="col-xs-10">Address: {{order.address}}</div>
             </div>
             <br>
-            <!--Second order-->
-            <div class="order">
-                <div class="row">
-                    <div class="col-xs-4" data-toggle="collapse" data-target="#detail2">Order2</div>
-                    <div class="col-xs-3 hidden-xs">status</div>
-                    <div class="col-xs-3 pull-right">
-                        <button ngclick="model.editOrder()" class="pull-right">Edit</button>
-                    </div>
+            <div class="row">
+                <div class="col-xs-10">Phone Number: {{order.phone}}</div>
+            </div>
+            <br>
+            <div class="row col-xs-10">Foods:</div>
+            <br>
+            <div class="row" ng-repeat="food in order.foods">
+                <div class="col-xs-10">{{food}}</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-10">Total: ${{order.totalPrice}}</div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-10 btn btn-info" ng-click="model.assign(order._id)"
+                     ng-show="order.status === 'Processing'">Assign Order to Delivery Man
                 </div>
-                <ul id="detail2" class="collapse">
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">First item</div>
-                            <div class="col-xs-3 hidden-xs">3</div>
-                            <div class="col-xs-3 pull-right">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">Second item</div>
-                            <div class="col-xs-3 hidden-xs">3</div>
-                            <div class="col-xs-3 pull-right">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row">
-                            <div class="col-xs-4">Third item</div>
-                            <div class="col-xs-3 hidden-xs">3</div>
-                            <div class="col-xs-3 pull-right">
-                                <span class="glyphicon glyphicon-plus"></span>
-                                <span class="glyphicon glyphicon-minus"></span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
+            </div>
+            <div class="row">
+                <div class="col-xs-10 btn btn-danger"
+                     ng-show="order.status != 'Completed' && order.status != 'Cancelled'"
+                     ng-click="model.cancelOrder(order._id)">Cancel Order
+                </div>
             </div>
         </div>
     </div>
+
 </section>

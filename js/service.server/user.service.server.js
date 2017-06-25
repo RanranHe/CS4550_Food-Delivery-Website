@@ -25,6 +25,7 @@ module.exports = function (app, models) {
     app.put('/api/project/user/:userId', updateUser);
     app.delete('/api/project/user/:userId', deleteUser);
     app.post("/api/project/logout", logout);
+    app.get("/api/project/deliveryMan/free", findFreeDeliveryMan);
 
     // Facebook Login
     app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
@@ -272,5 +273,14 @@ module.exports = function (app, models) {
             }, function (err) {
                 res.send(null);
             });
+    }
+
+    function findFreeDeliveryMan(req,res) {
+        userModel.findFreeDeliveryMan()
+            .then(function(response) {
+                res.json(response)
+            }, function(err) {
+                res.send(err)
+            })
     }
 };

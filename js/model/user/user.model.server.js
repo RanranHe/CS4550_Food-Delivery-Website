@@ -15,6 +15,7 @@ module.exports = function () {
     userModel.updateUser = updateUser;
     userModel.findUserByFacebookId = findUserByFacebookId;
     userModel.findUserByGoogleId = findUserByGoogleId;
+    userModel.findFreeDeliveryMan = findFreeDeliveryMan;
     //////////Helper Function ////////////////
     userModel.addOrderToOrderArray = addOrderToOrderArray;
     userModel.addOrderToRestaurantArray = addOrderToRestaurantArray;
@@ -31,6 +32,7 @@ module.exports = function () {
         findUserByFacebookId: findUserByFacebookId,
         findUserByGoogleId: findUserByGoogleId,
         searchUsers: searchUsers,
+        findFreeDeliveryMan: findFreeDeliveryMan,
         /////////Helper///////////////
         addOrderToOrderArray: addOrderToOrderArray,
         addOrderToRestaurantArray: addOrderToRestaurantArray
@@ -74,6 +76,10 @@ module.exports = function () {
 
     function searchUsers(searchText) {
         return userModel.find({username: {$regex:searchText + ""}});
+    }
+
+    function findFreeDeliveryMan() {
+        return userModel.find({status: 'FREE'})
     }
 
     //////////////////Helper Functions////////////////////

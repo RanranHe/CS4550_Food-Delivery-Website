@@ -12,7 +12,7 @@ var orderSchema = mongoose.Schema({
     totalPrice: Number,
     phone: String,
     date: {type: Date, default: Date.now()},
-    status: {type: String, enum: ['Processing', 'OnTheWay', 'Cancelled', 'Completed']}
+    status: {type: String, enum: ['Processing', 'Pickup', 'OnTheWay', 'Cancelled', 'Completed']}
 }, {collection: "RollingFoodDelivery.orders"});
 
 module.exports = orderSchema;

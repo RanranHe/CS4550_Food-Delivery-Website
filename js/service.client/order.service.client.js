@@ -8,7 +8,8 @@
             "findOrdersByUserId": findOrdersByUserId,
             "findOrdersByDeliveryManId": findOrdersByDeliveryManId,
             "findOrderById": findOrderById,
-            "updateOrder": updateOrder
+            "updateOrder": updateOrder,
+            "getAllOrders": getAllOrders
         };
 
         function createOrder(userId, order) {
@@ -52,6 +53,10 @@
                     return response;
                 }
             )
+        }
+
+        function getAllOrders() {
+            return $http.get("/api/project/orders");
         }
     }
 })();

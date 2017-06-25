@@ -1,0 +1,16 @@
+<section class="row profileinmiddle">
+    <div class="list-group-item">
+        <h5 class="header">Free Delivery Man</h5>
+    </div>
+
+    <div class="list-group-item" ng-repeat="deliveryMan in model.deliveryMans">
+        <div class="row">
+            <div class="col-xs-10">
+                <div>Username: {{deliveryMan.username}}</div>
+                <div>Name: {{deliveryMan.firstName}} {{deliveryMan.lastName}}</div>
+            </div>
+            <div class="col-xs-10 btn btn-info" ng-click="model.assignOrder(deliveryMan._id)">Assign Order</div>
+        </div>
+    </div>
+
+</section>

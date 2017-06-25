@@ -13,32 +13,40 @@
         model.deleteUser = deleteUser;
         model.logout = logout;
 
-        if (model.user.role === 'USER') {
-            model.message = "Welcome, Customer " + model.user.username + "!";
-        }
-        if (model.user.role === 'DELIVERYMAN') {
-            model.message = "Welcome, Delivery Man " + model.user.username + "!"
-        }
-        if (model.user.role === "MANAGER") {
-            model.message = "Welcome, Manager " + model.user.username + "!";
+        model.hasRole=false;
+
+        if(model.user.role) {
+            model.hasRole=true;
+            if (model.user.role === 'USER') {
+                model.message = "Welcome, Customer " + model.user.username + "!";
+            }
+            if (model.user.role === 'DELIVERYMAN') {
+                model.message = "Welcome, Delivery Man " + model.user.username + "!"
+            }
+            if (model.user.role === "MANAGER") {
+                model.message = "Welcome, Manager " + model.user.username + "!";
+            }
         }
 
         function updateUser() {
-            if (model.user.role) {
-                if (model.user.role === 'USER') {
-                    model.message = "Welcome, Customer " + model.user.username + "!";
-                }
-                if (model.user.role === 'DELIVERYMAN') {
-                    model.message = "Welcome, Delivery Man " + model.user.username + "!"
-                }
-                if (model.user.role === "MANAGER") {
-                    model.message = "Welcome, Manager " + model.user.username + "!";
-                }
-                UserService
-                    .updateUser(model.user._id, model.user);
-            } else {
-                model.error = "Please select a role!";
-            }
+            UserService
+                .updateUser(model.user._id, model.user)
+                .then(function () {
+                    if (!model.user.role) {
+                        model.error = "Please select a role!";
+                    } else {
+                        model.hasRole=true;
+                        if (model.user.role === 'USER') {
+                            model.message = "Welcome, Customer " + model.user.username + "!";
+                        }
+                        if (model.user.role === 'DELIVERYMAN') {
+                            model.message = "Welcome, Delivery Man " + model.user.username + "!"
+                        }
+                        if (model.user.role === "MANAGER") {
+                            model.message = "Welcome, Manager " + model.user.username + "!";
+                        }
+                    }
+                })
         }
 
         function deleteUser() {
@@ -46,7 +54,9 @@
                 .deleteUser(model.user._id)
                 .then(function () {
                     $location.url("/login/");
+                    location.reload();
                 });
+
         }
 
         function logout() {
@@ -55,6 +65,7 @@
                 .then(
                     function (response) {
                         $location.url("/login");
+                        location.reload();
                     })
         }
     }

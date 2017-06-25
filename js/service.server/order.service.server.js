@@ -7,6 +7,7 @@ module.exports = function (app, models) {
     app.get("/api/project/order/:orderId", findOrderById);
     // Do Edit-Order and Cancel-Order Here
     app.put("/api/project/order/:orderId", updateOrder);
+    app.get("/api/project/orders", getAllOrders);
 
     function createOrder(req, res) {
         var userId = req.params.userId;
@@ -62,5 +63,14 @@ module.exports = function (app, models) {
             .then(function (response) {
                 res.json(response);
             });
+    }
+
+    function getAllOrders(req, res) {
+        orderModel.getAllOrders()
+            .then(function (response) {
+                res.json(response);
+            }, function (err) {
+                res.send(null);
+            })
     }
 };

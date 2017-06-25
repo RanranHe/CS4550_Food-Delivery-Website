@@ -22,8 +22,10 @@
                 .then(function (response) {
                     var order = response.data;
                     order.status = status;
-                    OrderService.updateOrder(orderId, order);
-                    $location.url("#!/" + orderId + status);
+                    OrderService.updateOrder(orderId, order)
+                        .then(function () {
+                            location.reload();
+                        })
                 })
         }
     }

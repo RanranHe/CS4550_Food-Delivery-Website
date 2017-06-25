@@ -7,6 +7,7 @@
         $scope.isLoggedIn = false;
         $scope.isManager = false;
         $scope.isDeliveryMan = false;
+        $scope.isCustomer = false;
 
 
         function init() {
@@ -21,6 +22,16 @@
                         }
                         if (response.role === "DELIVERYMAN") {
                             $scope.isDeliveryMan = true;
+                            return;
+                        }
+                        if (response.role === "CUSTOMER") {
+                            $scope.isCustomer = true;
+                            return;
+                        }
+                        if (response.role === "ADMIN") {
+                            $scope.isAdmin = true;
+                        } else {
+                            $scope.hasRole = false;
                         }
                     }
                 }

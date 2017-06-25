@@ -52,6 +52,22 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when("/manager", {
+                templateUrl: "../views/order/template/order-list-manager.view.client.html",
+                controller: "OrderListManagerController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when("/order/:orderId/assign", {
+                templateUrl: "../views/order/template/order-assign-manager.view.client.html",
+                controller: "OrderAssignManagerController",
+                controllerAs: "model",
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
             .when("/restaurantNew", {
                 templateUrl: "../views/restaurant/template/new.view.client.html",
                 controller: "NewRestaurantController",
