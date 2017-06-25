@@ -16,6 +16,7 @@
                 foodNames.push(model.cartItems[i].name);
             }
         }
+
         init();
 
         model.deleteItem = deleteItem;
@@ -37,53 +38,59 @@
 
         function checkOut() {
             UserService.checkLoggedIn().then(
-                function(user) {
+                function (user) {
                     if (foodNames.length <= 0) {
                         model.error = "Please select at least one item!";
                         falseFlag = true;
+                        return;
                     }
                     if (model.address === "" || typeof model.address === "undefined") {
                         model.error = "Please enter your address!";
                         falseFlag = true;
+                        return;
                     }
                     if (model.name === "" || typeof model.name === "undefined") {
                         model.error = "Please enter your name!";
                         falseFlag = true;
+                        return;
                     }
                     if (model.cardNumber === "" || typeof model.cardNumber === "undefined") {
                         model.error = "Please enter your credit card number!";
                         falseFlag = true;
+                        return;
                     }
                     if (model.phone === "" || typeof model.phone === "undefined") {
                         model.error = "Please enter your phone number!";
                         falseFlag = true;
+                        return;
                     }
                     if (model.cardHolderName === "" || typeof model.cardHolderName === "undefined") {
                         model.error = "Please enter your credit card holder name!";
                         falseFlag = true;
+                        return;
                     }
-
                     if (model.cardExpireDate === "" || typeof model.cardExpireDate === "undefined") {
                         model.error = "Please enter your credit card expiration date!";
                         falseFlag = true;
-                    }
-
-                    if (!falseFlag) {
-                        var newOrder = {
-                            _user: user._id,
-                            address: model.address,
-                            foods: foodNames,
-                            creditCard: model.cardNumber,
-                            creditCardExpireDate: model.cardExpireDate,
-                            creditCardHolder: model.cardHolderName,
-                            name: model.name,
-                            phone: model.phone,
-                            totalPrice: CartService.getTotalPrice(),
-                            dateCreated: {type: Date, default: Date.now()},
-                            status: "Processing"
-                        };
-                        OrderService.createOrder(user._id, newOrder);
-                        $location.url("/orderList")
+                    } else {
+                        falseFlag = false;
+                        if (!falseFlag) {
+                            var newOrder = {
+                                _user: user._id,
+                                address: model.address,
+                                foods: foodNames,
+                                creditCard: model.cardNumber,
+                                creditCardExpireDate: model.cardExpireDate,
+                                creditCardHolder: model.cardHolderName,
+                                name: model.name,
+                                phone: model.phone,
+                                totalPrice: CartService.getTotalPrice(),
+                                dateCreated: {type: Date, default: Date.now()},
+                                status: "Processing"
+                            };
+                            OrderService.createOrder(user._id, newOrder);
+                            $location.url("/orderList")
+                        }
                     }
                 }
             );
@@ -116,6 +123,7 @@
                 }
             )
         }
+
         init();
     }
 
