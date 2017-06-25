@@ -121,3 +121,10 @@ a:hover{
 .admin-edit-Tool {
     margin-right: 3%;
 }
+
+.content {
+    min-height: calc(95vh - 70px);
+}
+.footer {
+    height: 50px;
+}
