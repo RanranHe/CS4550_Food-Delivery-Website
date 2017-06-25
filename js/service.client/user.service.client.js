@@ -14,7 +14,8 @@
             "deleteUser": deleteUser,
             "logout": logout,
             "searchUsers": searchUsers,
-            "findFreeDeliveryMan": findFreeDeliveryMan
+            "findFreeDeliveryMan": findFreeDeliveryMan,
+            "findAllUsers": findAllUsers
         };
 
         //////////////// Register ///////////////
@@ -87,6 +88,10 @@
 
         function findFreeDeliveryMan() {
             return $http.get("/api/project/deliveryMan/free");
+        }
+
+        function findAllUsers() {
+            return $http.get("/api/project/users");
         }
     }
 })();

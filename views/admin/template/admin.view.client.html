@@ -28,7 +28,7 @@
             </div>
         </li>
 
-        <li class="list-group-item" ng-repeat="user in model.users">
+        <li class="list-group-item" ng-show="!model.searchDone" ng-repeat="user in model.users">
             <div class="row">
                 <div class="col-lg-2 col-md-8 col-sm-11 col-xs-11">
                     {{user.username}}
@@ -44,6 +44,28 @@
                 </div>
                 <div class="admin-edit-Tool">
                     <a href="#!/admin/user/{{user._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
+
+        <li class="list-group-item" ng-show="model.searchDone" ng-repeat="result in model.results">
+            <div class="row">
+                <div class="col-lg-2 col-md-8 col-sm-11 col-xs-11">
+                    {{result.username}}
+                </div>
+                <div class="col-lg-5 visible-lg">
+                    {{result.password}}
+                </div>
+                <div class="col-lg-2 visible-lg">
+                    {{result.role}}
+                </div>
+                <div class="col-md-2 visible-lg">
+                    {{result.dateCreated}}
+                </div>
+                <div class="admin-edit-Tool">
+                    <a href="#!/admin/user/{{result._id}}">
                         <span class="glyphicon glyphicon-cog pull-right"></span>
                     </a>
                 </div>

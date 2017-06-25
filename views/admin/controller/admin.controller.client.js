@@ -7,13 +7,25 @@
     function AdminController(UserService) {
         var model = this;
 
+        model.searchDone = false;
+
+        function init() {
+            UserService.findAllUsers()
+                .then(function (users) {
+                    model.users = users.data;
+                });
+        }
+        init();
+
+
         model.searchUser = searchUser;
 
         function searchUser(searchText) {
+            model.searchDone = true;
             UserService
                 .searchUsers(searchText)
-                .then(function (users) {
-                    model.users = users.data;
+                .then(function (results) {
+                    model.results = results.data;
                 })
         }
     }
@@ -32,6 +44,7 @@
                     model.user = user.data;
                 })
         }
+
         init();
 
         function updateUser() {
