@@ -14,7 +14,6 @@
             UserService.checkLoggedIn().then(
                 function(response) {
                     if (response !== '0') {
-                        console.log(response);
                         $scope.username = response.username;
                         $scope.isLoggedIn = true;
                         if (response.role === "MANAGER") {
